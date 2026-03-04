@@ -1,0 +1,30 @@
+/*
+조건,정보 흐름 : 희귀도 → 부모 ID → 자식 ID → 자식 이름 
+1. 아이템 정보(ITEM_INFO)에서 RARITY가 'RARE'인 아이템들의 ITEM_ID를 찾는다.
+2. 아이템 트리(ITEM_TREE)에서 위에서 찾은 ID들이 PARENT_ITEM_ID인 행들을 찾는다.
+3. 찾아낸 자식 아이템들의 상세 정보(이름, 희귀도 등)를 다시 아이템 정보(ITEM_INFO)에서 가져와 출력한다.
+*/
+SELECT 
+    I.ITEM_ID, 
+    I.ITEM_NAME, 
+    I.RARITY
+FROM ITEM_INFO I
+JOIN ITEM_TREE T ON I.ITEM_ID = T.ITEM_ID  -- 정보를 가져오기 위해 트리와 인포를 연결
+WHERE T.PARENT_ITEM_ID IN (
+    -- 여기에 '부모'가 될 아이템들의 ID를 미리 뽑아둠
+    SELECT ITEM_ID 
+    FROM ITEM_INFO 
+    WHERE RARITY = 'RARE'
+)
+ORDER BY I.ITEM_ID DESC;
+
+-- 더블 JOIN 으로 해결
+SELECT 
+    CHILD.ITEM_ID, 
+    CHILD.ITEM_NAME, 
+    CHILD.RARITY
+FROM ITEM_INFO AS PARENT
+JOIN ITEM_TREE AS TREE ON PARENT.ITEM_ID = TREE.PARENT_ITEM_ID
+JOIN ITEM_INFO AS CHILD ON TREE.ITEM_ID = CHILD.ITEM_ID
+WHERE PARENT.RARITY = 'RARE'
+ORDER BY CHILD.ITEM_ID DESC;
