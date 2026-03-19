@@ -31,3 +31,12 @@ for i in range(15):
     for j in range(5):
         if i<len(arr[j]):
             print(arr[j][i],end='')
+
+# 이 문제를 다시 풀어보았따. (큐를 사용해서 len계산을 없앴다.)
+from collections import deque
+words=[deque(input()) for _ in range(5)]
+
+for i in range(15): 
+    for word in words:
+        if word:
+            print(word.popleft(),end='')
