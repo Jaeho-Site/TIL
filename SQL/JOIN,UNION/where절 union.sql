@@ -1,0 +1,25 @@
+SELECT 
+    M.MEMBER_ID, 
+    M.NAME, 
+    T.TRACK_NAME
+FROM MEMBERS M
+JOIN TRACKS T ON M.TRACK_ID = T.TRACK_ID
+WHERE M.MEMBER_ID IN (
+    -- 조건 1: AI 이력서 통과자 또는 모의 면접 우수자
+    SELECT MEMBER_ID 
+    FROM AI_RESUMES 
+    WHERE PASS_FLAG = 'Y'
+    
+    UNION -- UNION 자체가 중복을 제거하므로 DISTINCT 생략 가능
+    
+    SELECT MEMBER_ID 
+    FROM MOCK_INTERVIEWS 
+    WHERE GRADE IN ('S', 'A')
+) 
+AND M.MEMBER_ID NOT IN (
+    -- 조건 2: F등급 받은 이력이 있는 사람 제외
+    SELECT MEMBER_ID 
+    FROM MOCK_INTERVIEWS 
+    WHERE GRADE = 'F'
+)
+ORDER BY M.MEMBER_ID ASC;
