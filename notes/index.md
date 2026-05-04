@@ -8,18 +8,23 @@ hero:
   tagline: 배운점을 기록합니다.
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: 글 보러가기
+      link: /frontend/javascript/
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: GitHub
+      link: https://github.com/Jaeho-Site/TIL
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Frontend
+    details: JavaScript를 시작으로 프론트엔드 전반에서 배운 내용을 정리합니다.
+    link: /frontend/
+    linkText: 바로가기
+  - title: Network
+    details: HTTP, 브라우저 통신 등 네트워크 관련 학습 노트.
+    link: /network/
+    linkText: 바로가기
+  - title: Operating System
+    details: 프로세스, 메모리, 동시성 등 운영체제 핵심 개념.
+    link: /operating-system/
+    linkText: 바로가기
 ---
-
