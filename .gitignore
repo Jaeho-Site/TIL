@@ -6,3 +6,4 @@
 node_modules/
 notes/.vitepress/dist/
 notes/.vitepress/cache/
+reference/
