@@ -1,9 +1,14 @@
 *.exe
 .vscode
 .txt
+.claude
 
 # vitepress
 node_modules/
 notes/.vitepress/dist/
 notes/.vitepress/cache/
 reference/
+markdown/
+
+#else
+a.js
