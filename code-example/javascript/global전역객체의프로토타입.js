@@ -38,3 +38,12 @@ console.log("팩트 1 확인 (그 위의 할아버지가 Object.prototype인가?
 //    Function, Promise 등의 빌트인 생성자 함수들을 만들어 전역 객체 안에 할당합니다.
 console.log("팩트 2 확인 (Object):", global.Object === Object);   // 출력: true
 console.log("팩트 2 확인 (Promise):", global.Promise === Promise); // 출력: true
+
+// ----------------------------------------------------------------------------
+// 팩트 3. 빌트인 생성자 함수의 프로토타입 생성 및 연결
+// ----------------------------------------------------------------------------
+// Function, Promise 등 빌트인 함수들이 만들어질 때 Function.prototype 등 
+// 각자의 프로토타입 객체도 함께 만들어집니다.
+// 단, Object 생성자 함수가 전역 프로퍼티로 할당될 때는, 새 프로토타입을 만들지 않고 
+// 이미 1단계에서 만들어져 있던 태초의 'Object.prototype'을 가리키도록 연결선만 이어줍니다.
+console.log("팩트 3 확인:", Object.prototype === global.Object.prototype); // 출력: true
