@@ -47,3 +47,15 @@ console.log("팩트 2 확인 (Promise):", global.Promise === Promise); // 출력
 // 단, Object 생성자 함수가 전역 프로퍼티로 할당될 때는, 새 프로토타입을 만들지 않고 
 // 이미 1단계에서 만들어져 있던 태초의 'Object.prototype'을 가리키도록 연결선만 이어줍니다.
 console.log("팩트 3 확인:", Object.prototype === global.Object.prototype); // 출력: true
+
+// ----------------------------------------------------------------------------
+// 팩트 4. Node.js 전역 객체의 짧은 프로토타입 체인
+// ----------------------------------------------------------------------------
+// 브라우저의 window 객체는 DOM 조작 및 이벤트 처리(EventTarget 상속 등)를 위해 
+// 프로토타입 체인이 길고 복잡합니다. 반면, Node.js의 global 객체는 브라우저 API가 
+// 제외된 순수 런타임 환경이므로, Object.prototype으로 직행하는 매우 짧은 체인을 가집니다.
+/* 브라우저의 window는 DOM API(Window -> WindowProperties -> EventTarget...)를 상속받아 체인이 매우 길고 복잡하다. 
+반면 Node.js의 global 전역 객체는 브라우저 API가 없는 순수 런타임 환경이므로, 
+[Global Proxy] -> [내부 Global Object] -> [Object.prototype] 이라는 매우 짧고 단순한 체인 구조를 가진다.*/
+// const g1 = Object.getPrototypeOf(global); // 내부 Global Object
+console.log("팩트 4 확인 (g1의 정체는?):", g1.constructor.name); // 출력: 'Object' (V8 내부 전역 객체)
