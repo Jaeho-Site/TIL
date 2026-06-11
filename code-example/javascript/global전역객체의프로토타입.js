@@ -59,3 +59,12 @@ console.log("팩트 3 확인:", Object.prototype === global.Object.prototype); /
 [Global Proxy] -> [내부 Global Object] -> [Object.prototype] 이라는 매우 짧고 단순한 체인 구조를 가진다.*/
 // const g1 = Object.getPrototypeOf(global); // 내부 Global Object
 console.log("팩트 4 확인 (g1의 정체는?):", g1.constructor.name); // 출력: 'Object' (V8 내부 전역 객체)
+
+// ----------------------------------------------------------------------------
+// 팩트 5. 최상위 스코프 변수 선언은 전역 객체의 프로퍼티가 되지 않는다. (Node.js 특화)
+// ----------------------------------------------------------------------------
+// 브라우저에서는 최상단에 var로 선언하면 window의 프로퍼티가 되지만, 
+// Node.js는 각 파일을 독립적인 '모듈(Module)'로 감싸서 실행합니다.
+// 따라서 아래 myVar는 해당 모듈 내부의 지역 변수일 뿐, global에 바인딩되지 않습니다.
+var myVar = "test_variable";
+console.log("팩트 5 확인:", global.myVar === undefined); // 출력: true
