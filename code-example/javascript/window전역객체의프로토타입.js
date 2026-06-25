@@ -32,3 +32,13 @@ const w4 = Object.getPrototypeOf(w3);      // Object.prototype
 
 console.log("팩트 1 확인 (직속 부모가 Object.prototype인가?):", w1 === Object.prototype); // false!
 console.log("팩트 1 확인 (여러 단계 위에 Object.prototype이 있는가?):", w4 === Object.prototype); // true!
+
+// ----------------------------------------------------------------------------
+// 팩트 2. 엔진의 초기화 순서와 빌트인 함수 할당
+// ----------------------------------------------------------------------------
+// 1) 자바스크립트 엔진은 태초에 'Object.prototype'을 메모리에 가장 먼저 생성합니다.
+// 2) 이후 전역 객체(window)를 생성하여 체인을 연결합니다.
+// 3) 전역 객체 생성 직후, 누구나 접근할 수 있는 '일반 공개 프로퍼티'로 Object,
+//    Function, Promise 등의 빌트인 생성자 함수들을 만들어 전역 객체 안에 할당합니다.
+console.log("팩트 2 확인 (Object):", window.Object === Object);   // 출력: true
+console.log("팩트 2 확인 (Promise):", window.Promise === Promise); // 출력: true
