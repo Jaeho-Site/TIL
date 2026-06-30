@@ -66,3 +66,5 @@ console.log("팩트 4 확인 (체인 각 단계의 정체):",
   w1.constructor.name, // 'Window'
   w3.constructor.name  // 'EventTarget'
 );
+console.log("팩트 4 확인 (window는 EventTarget의 인스턴스인가?):", window instanceof EventTarget); // 출력: true
+console.log("팩트 4 확인 (addEventListener를 상속받는가?):", typeof window.addEventListener === "function"); // 출력: true
