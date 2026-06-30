@@ -59,3 +59,10 @@ console.log("팩트 3 확인:", Object.prototype === window.Object.prototype); /
 // Object.prototype으로 직행하는 매우 짧은 체인을 가진다. 반면 브라우저의 window는
 // DOM 조작 및 이벤트 처리(addEventListener 등)를 위해 EventTarget을 상속받아야 하므로
 // 프로토타입 체인이 길고 복잡하다.
+/* [window] -> [Window.prototype] -> [WindowProperties] -> [EventTarget.prototype] -> [Object.prototype]
+   이처럼 window는 EventTarget을 상속받기 때문에 addEventListener, dispatchEvent 같은
+   이벤트 메서드를 그대로 사용할 수 있다. */
+console.log("팩트 4 확인 (체인 각 단계의 정체):",
+  w1.constructor.name, // 'Window'
+  w3.constructor.name  // 'EventTarget'
+);
