@@ -68,3 +68,10 @@ console.log("팩트 4 확인 (체인 각 단계의 정체):",
 );
 console.log("팩트 4 확인 (window는 EventTarget의 인스턴스인가?):", window instanceof EventTarget); // 출력: true
 console.log("팩트 4 확인 (addEventListener를 상속받는가?):", typeof window.addEventListener === "function"); // 출력: true
+
+// ----------------------------------------------------------------------------
+// 팩트 5. 최상위 스코프의 var 선언은 window의 프로퍼티가 된다. (브라우저 특화)
+// ----------------------------------------------------------------------------
+// Node.js는 각 파일을 독립적인 '모듈(Module)'로 감싸기 때문에 최상위 var가
+// global에 바인딩되지 않는다. 하지만 브라우저에서는 (모듈 스크립트가 아닌 한)
+// 최상위 스코프의 var 선언이 그대로 window의 프로퍼티가 된다.
