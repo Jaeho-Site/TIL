@@ -1,0 +1,17 @@
+/* 사이드바 목차 간격 축소 */
+
+/* 그룹(섹션) 아래 여백: 기본 24px — 그룹 끝 남는 공간 */
+#VPSidebarNav .VPSidebarItem.level-0 {
+  padding-bottom: 10px;
+}
+
+/* 항목 한 줄의 상하 여백: 기본 4px */
+.VPSidebarItem .item .text {
+  padding: 2px 0;
+}
+
+/* 그룹 사이 구분선 위아래 여백 */
+#VPSidebarNav .group + .group {
+  margin-top: 5px;
+  padding-top: 5px;
+}

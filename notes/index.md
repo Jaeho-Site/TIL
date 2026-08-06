@@ -9,15 +9,19 @@ hero:
   actions:
     - theme: brand
       text: 글 보러가기
-      link: /frontend/javascript/
+      link: /javascript/
     - theme: alt
       text: GitHub
       link: https://github.com/Jaeho-Site/TIL
 
 features:
-  - title: Frontend
-    details: JavaScript를 시작으로 프론트엔드 전반에서 배운 내용을 정리합니다.
-    link: /frontend/
+  - title: JavaScript
+    details: 언어 동작 원리를 질문을 따라가며 정리한 공부 기록.
+    link: /javascript/
+    linkText: 바로가기
+  - title: Browser
+    details: 렌더링 파이프라인과 이벤트 시스템의 동작 원리.
+    link: /browser/
     linkText: 바로가기
   - title: Network
     details: HTTP, 브라우저 통신 등 네트워크 관련 학습 노트.
