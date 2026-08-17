@@ -5,7 +5,7 @@ description: this를 스코프 체인에서 찾는 함수 — call/apply/bind, �
 
 # 화살표 함수의 this는 왜 다른가
 
-[지난 글](/javascript/09-this-binding)에서 this는 호출 방식이 결정한다고 정리했다. 그 규칙이 통하지 않는 함수가 있다는 걸 보여주는 문제부터 본다.
+[지난 글](/javascript/09-this-binding)에서 this는 호출 방식이 결정한다고 정리했다. 그 규칙이 통하지 않는 함수가 있다는 걸 보여주는 문제를 보자.
 
 ```javascript
 window.x = 1;
@@ -65,7 +65,7 @@ foo() {
 }
 ```
 
-우회 1이 재미있다. this는 스코프 체인을 타지 않지만 **변수 `that`은 탄다.** this를 변수에 옮겨 담는 순간 [클로저](/javascript/07-closure)로 전달할 수 있게 된다. 화살표 함수는 바로 이 패턴을 언어 차원에서 내장한 것이다.
+우회 1이 재미있는 접근이다. this는 스코프 체인을 타지 않지만 **변수 `that`은 탄다.** this를 변수에 옮겨 담는 순간 [클로저](/javascript/07-closure)로 전달할 수 있게 된다. 화살표 함수는 바로 이 패턴을 언어 차원에서 내장한 것이다.
 
 ```javascript
 foo() {
@@ -114,7 +114,7 @@ console.log(counter.increase()); // NaN
 
 ## React가 bind를 강요하던 이유
 
-클래스 컴포넌트 시절 React 코드에는 이런 보일러플레이트가 반드시 있었다.
+클래스 컴포넌트 시절 React 코드에는 이런 보일러플레이트가 있었다.
 
 ```jsx
 class Toggle extends React.Component {
@@ -141,4 +141,4 @@ class Toggle extends React.Component {
 
 **일반 함수의 this는 호출이 결정하고, 화살표 함수의 this는 스코프가 결정한다.** 화살표 함수는 this를 클로저의 세계로 데려온 함수다 — 그래서 규칙이 아니라 방향 자체가 다르다.
 
-남은 궁금증은 지난 글에서 미뤄둔 규칙 ③이다. `new`와 함께 호출하면 this가 "새로 만들어질 인스턴스"라고 했는데, 그 인스턴스는 누가 언제 만들고, 어떻게 메서드를 물려받는 걸까? 다음 그룹에서 프로토타입으로 들어간다. → [자바스크립트의 상속은 어떻게 동작하는가](/javascript/11-prototype-chain)
+남은 의문은 지난 글에서 미뤄둔 규칙 ③이다. `new`와 함께 호출하면 this가 "새로 만들어질 인스턴스"라고 했는데, 그 인스턴스는 누가 언제 만들고, 어떻게 메서드를 물려받는 걸까? 다음 그룹에서 자바스크립트의 본질인 프로토타입에 대해 작성하겠다. → [자바스크립트의 상속은 어떻게 동작하는가](/javascript/11-prototype-chain)
