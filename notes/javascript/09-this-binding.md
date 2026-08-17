@@ -5,7 +5,7 @@ description: 함수가 소속된 곳이 아니라 호출한 방식이 this를 �
 
 # this는 언제 결정되는가
 
-[지난 글](/javascript/08-closure-in-practice) 끝에서 던진 질문을 이어받는다. 스코프도 클로저도 전부 함수가 **정의될 때** 정해졌는데, this도 그럴까? 문제부터 본다.
+[지난 글](/javascript/08-closure-in-practice) 끝에서 던진 질문을 이어받는다. 스코프도 클로저도 전부 함수가 **정의될 때** 정해졌는데, this도 그럴까? 아래 예제를 보자.
 
 ```javascript
 const person = {
@@ -76,6 +76,7 @@ obj.foo();
 `obj.foo()`처럼 호출하면 this는 **마침표 앞의 객체**다. 규칙이 이렇게 단순하기 때문에, 같은 함수라도 어떤 객체를 통해 호출하느냐에 따라 this가 바뀐다.
 
 ```javascript
+const person = { name: 'Lee', getName() { return this.name; }};
 const anotherPerson = { name: 'Kim' };
 anotherPerson.getName = person.getName; // 같은 함수 객체를 가리키게 한다
 
@@ -112,7 +113,7 @@ console.log(radius);  // 15 — this가 window라서 전역에 radius가 생겼�
 
 ## ④ call / apply / bind — 내가 지정한 객체
 
-마지막 규칙은 예외 조항이다. `foo.call(thisArg)`처럼 호출하면 일반 호출·메서드 호출 규칙을 무시하고 **첫 번째 인수로 넘긴 객체**가 this가 된다. this를 개발자가 직접 지정하는 통로인데, 셋의 차이와 실전 쓰임은 분량이 있어서 [다음 글](/javascript/10-arrow-function-this)에서 화살표 함수와 함께 다룬다.
+마지막 규칙은 예외 조항이다. `foo.call(thisArg)`처럼 호출하면 일반 호출·메서드 호출 규칙을 무시하고 **첫 번째 인수로 넘긴 객체**가 this가 된다. this를 개발자가 직접 지정하는건데, 셋의 차이와 실전 쓰임은 분량이 있어서 [다음 글](/javascript/10-arrow-function-this)에서 화살표 함수와 함께 다루면 좋을것 같다.
 
 정리하면 이렇다. 규칙끼리 겹치면 **③ new가 가장 세고, 그다음이 ④ 간접 호출**이다(③ > ④ > ② > ①). bind로 this를 고정해 둔 함수라도 `new`로 호출하면 bind가 지정한 객체는 무시되고 새 인스턴스가 this가 된다.
 
@@ -131,4 +132,4 @@ console.log(radius);  // 15 — this가 window라서 전역에 radius가 생겼�
 
 **this는 함수가 소속된 곳이 아니라, 호출한 방식이 결정한다.** 정의 시점에 굳는 스코프·클로저와 정확히 반대 방향이다 — 그래서 "스코프는 정의가, this는 호출이"라고 대구로 기억하면 안 잊는다.
 
-그런데 이 대구를 정면으로 깨는 함수가 하나 있다. 화살표 함수는 위의 네 규칙을 전부 무시하고, this마저 스코프처럼 정의 위치에서 가져온다. call로 지정해도 안 바뀐다. 왜 그런 함수를 만들었을까? → [화살표 함수의 this는 왜 다른가](/javascript/10-arrow-function-this)
+그런데 이걸 무시하는 함수가 하나 있다. 화살표 함수는 위의 네 규칙을 전부 무시하고, this마저 스코프처럼 정의 위치에서 가져온다. call로 지정해도 안 바뀐다. 왜 그런 함수를 만들었는지는 다음 포스팅에서 다루도록 하겠다. [화살표 함수의 this는 왜 다른가](/javascript/10-arrow-function-this)
