@@ -42,7 +42,7 @@ me.sayHi(); // Hi! My name is Lee
 
 ## 설탕이 맞긴 하다
 
-뼈대는 진짜로 같다. 확인해 보면:
+뼈대는 프로토타입으로 진짜로 같다. 확인해 보면:
 
 ```javascript
 class Person {
@@ -59,7 +59,7 @@ console.log(Object.getPrototypeOf(me) === Person.prototype); // true
 
 class는 특별한 새 타입이 아니라 **함수**고, class 몸체에 쓴 메서드는 `Person.prototype`에 올라가며, 인스턴스는 [프로토타입 체인](/javascript/11-prototype-chain)으로 메서드를 찾아 쓴다. `me.sayHi()`의 검색 경로는 생성자 함수 버전과 완전히 동일하다. 상속(`extends`)도 마찬가지로 새 메커니즘이 아니다 — 부모 클래스의 prototype을 자식 클래스 prototype의 프로토타입으로 연결해서, **체인을 한 층 더 쌓는 것**이다.
 
-## 그런데 세 군데가 다르다
+## 그런데 세 부분이 다르다
 
 포장만 바꾼 게 아니다. class는 생성자 함수가 조용히 허용하던 실수들을 **에러로 바꿨다.** 지금까지의 글들에서 본 사고들이 하나씩 막혀 있는 게 보인다.
 
