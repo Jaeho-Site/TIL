@@ -5,7 +5,7 @@ description: ES6가 함수를 세 종류로 나눈 이유 — this, arguments, s
 
 # 화살표 함수와 일반 함수는 뭐가 다른가
 
-거의 똑같아 보이는 두 메서드로 시작한다.
+거의 똑같아 보이는 아래 두 메서드를 보자.
 
 ```javascript
 const obj = {
@@ -57,7 +57,7 @@ new Foo(); // TypeError: Foo is not a constructor
 console.log(Foo.hasOwnProperty('prototype')); // false
 ```
 
-[new의 4단계](/javascript/12-new-and-constructor)를 떠올리면 당연한 귀결이다 — 2단계에서 인스턴스와 이어줄 `prototype`도 없고, 3단계에서 바인딩할 자기 this도 없다. 생성자가 되기 위한 부품 자체가 없는 것이다.
+[new의 4단계](/javascript/12-new-and-constructor)를 떠올리면 당연한 결과다 — 2단계에서 인스턴스와 이어줄 `prototype`도 없고, 3단계에서 바인딩할 자기 this도 없다. 생성자가 되기 위한 부품 자체가 없는 것이다.
 
 **③ arguments가 없다.** [지난 글](/javascript/14-first-class-function)에서 본 그 유사 배열 객체가 화살표 함수 안에는 만들어지지 않는다. 참조하면 상위 스코프의 arguments가 잡힌다. 가변 인자가 필요하면 rest 파라미터를 쓰라는 뜻이다.
 
@@ -71,7 +71,7 @@ const sum = (...args) => args.reduce((pre, cur) => pre + cur, 0);
 
 ## 그래서 언제 뭘 쓰나
 
-세 종류의 용도는 이제 자동으로 나온다.
+세 종류의 용도는 아래와 같다.
 
 ```javascript
 const counter = {
@@ -90,6 +90,6 @@ const counter = {
 
 ---
 
-ES6의 함수 삼분법은 결국 **함수의 만능을 회수하고, 각자 목적에 필요한 것만 남긴 것**이다. 화살표 함수가 일반 함수의 축약이 아니라는 것 — 없는 네 가지(this·arguments·super·new.target)와 그래서 생성자가 될 수 없다는 것까지 답할 수 있으면 이 주제는 끝난다.
+ES6의 함수 삼분법?은 결국 **함수의 만능을 회수하고, 각자 목적에 필요한 것만 남긴 것**이다. 화살표 함수가 일반 함수의 축약이 아니라는 것 — 없는 네 가지(this·arguments·super·new.target)와 그래서 생성자가 될 수 없다는 것까지 답할 수 있으면 이 주제는 끝난다.
 
-이것으로 함수 이야기도 일단락이다. 남은 궁금증은 14에서 만난 "배열처럼 생겼는데 배열이 아닌 것"이다. for...of는 되는데 왜 배열 메서드는 안 될까 — 순회 가능하다는 것의 정확한 조건, 이터러블 프로토콜로 이어진다. → [for...of와 for...in은 뭐가 다른가](/javascript/21-iterable)
+이것으로 함수 이야기도 회고했다. 남은 의문은 이전에본 "배열처럼 생겼는데 배열이 아닌 것"이다. for...of는 되는데 왜 배열 메서드는 안 될까? 순회 가능하다는 것의 정확한 조건, 이터러블 프로토콜로 이야기해보겠다. → [for...of와 for...in은 뭐가 다른가](/javascript/21-iterable)
