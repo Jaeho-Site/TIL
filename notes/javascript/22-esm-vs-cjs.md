@@ -30,7 +30,7 @@ var moduleA = (function () {
 }());
 ```
 
-[클로저 은닉](/javascript/08-closure-in-practice)에서 본 IIFE 패턴이 사실 모듈 시스템의 수공업 버전이었던 셈이다. 하지만 한계가 명확했다 — 공개 창구(`moduleA`)는 여전히 전역에 놓이고, 파일 간 의존 순서는 script 태그 순서로 사람이 관리해야 했다. 이 문제를 제대로 풀려는 시도에서 두 모듈 시스템이 나왔다. 서버(Node.js) 진영의 **CommonJS**(CJS, `require`/`module.exports`)가 먼저였고, 언어 표준으로는 ES2015에 **ESM**(`import`/`export`)이 들어왔다.
+[클로저 은닉](/javascript/08-closure-in-practice)에서 본 IIFE 패턴이 사실 모듈 시스템의 수공업 버전이었던 셈이다. 하지만 한계가 명확했다. 공개 창구(`moduleA`)는 여전히 전역에 놓이고, 파일 간 의존 순서는 script 태그 순서로 사람이 관리해야 했다. 이 문제를 제대로 풀려는 시도에서 두 모듈 시스템이 나왔다. 서버(Node.js) 진영의 **CommonJS**(CJS, `require`/`module.exports`)가 먼저였고, 언어 표준으로는 ES2015에 **ESM**(`import`/`export`)이 들어왔다.
 
 ```javascript
 // CJS
