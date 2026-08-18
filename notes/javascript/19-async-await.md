@@ -5,7 +5,7 @@ description: await은 멈추는 게 아니라 비켜주는 것 — 그리고 try
 
 # async/await은 어떻게 동작하나
 
-[지난 글](/javascript/18-promise) 끝에서 "then 체인을 동기 코드 모양으로 되돌려 준 문법"이라고 했다. 정말 동기처럼 동작하는지 확인하는 문제부터.
+[지난 글](/javascript/18-promise) 끝에서 "then 체인을 동기 코드 모양으로 되돌려 준 문법"이라고 했다. 정말 동기처럼 동작하는지 확인하는 문제부터 보자.
 
 ```javascript
 async function foo() {
@@ -19,7 +19,7 @@ console.log('C');
 // 출력 순서는?
 ```
 
-`await`이 "기다린다"는 뜻이니 `A B C`일 것 같지만, 답은 **`A C B`**다. 애초에 진짜로 기다린다면 이상하다 — [싱글 스레드](/javascript/16-event-loop)에서 함수 하나가 기다리며 버티고 있으면 프로그램 전체가 멈춰야 한다.
+`await`이 "기다린다"는 뜻이니 `A B C`일 것 같지만, 답은 **`A C B`** 다. 애초에 진짜로 기다린다면 이상하다. [싱글 스레드](/javascript/16-event-loop)에서 함수 하나가 기다리며 버티고 있으면 프로그램 전체가 멈춰야 한다.
 
 ## await은 멈추는 게 아니라 비켜주는 것이다
 
@@ -59,7 +59,7 @@ async function fetchTodo() {
 
 물론 함수 안에서 잡지 않고 호출자에게 미루는 선택도 된다. async 함수 안에서 잡히지 않은 에러는 반환 프로미스의 rejection이 되므로, 호출부에서 `.catch`(또는 바깥 async 함수의 try/catch)로 받으면 된다.
 
-## 함정: await을 빼먹으면 다시 샌다
+## 주의할점, await을 빼먹으면 다시 샌다
 
 이 통일에는 조건이 있다. **try 블록 안에서 프로미스를 await해야** 한다는 것이다.
 
