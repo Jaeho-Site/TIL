@@ -5,11 +5,11 @@ description: 순회 가능하다는 것의 정확한 조건 — 이터러블 프
 
 # for...of와 for...in은 뭐가 다른가
 
-이름이 한 글자 차이라 초반에 자주 섞어 썼던 두 반복문이다. 배열에 프로퍼티를 하나 붙여서 돌려보면 완전히 다른 물건이라는 게 드러난다.
+코드가 한 글자 차이라 초반에 섞어 썼던 두 반복문이다. 배열에 프로퍼티를 하나 붙여서 돌려보면 완전히 다른 문법이라는 게 보인다.
 
 ```javascript
 const arr = ['a', 'b', 'c'];
-arr.extra = 'd'; // 배열도 객체니까 이런 게 된다
+arr.extra = 'd'; // 배열도 객체니까 이런 게 된다.
 
 for (const x of arr) console.log(x); // ?
 for (const x in arr) console.log(x); // ?
@@ -55,7 +55,7 @@ const obj = { a: 1, b: 2 };
 const arr2 = [...obj];   // TypeError: obj is not iterable
 const [x, y] = obj;      // TypeError: obj is not iterable
 
-console.log({ ...obj }); // { a: 1, b: 2 } — 어? 이건 되네?
+console.log({ ...obj }); // { a: 1, b: 2 } — 이건 되네?
 ```
 
 마지막 줄이 헷갈리는 지점이다. **객체 리터럴 안의 스프레드는 이터러블 프로토콜과 무관한 별도 문법**(ES2018 스프레드 프로퍼티)으로, 프로퍼티를 복사할 뿐이다. [얕은 복사 글](/javascript/02-shallow-deep-copy)에서 쓰던 그 스프레드는 사실 이터러블과 상관없는 기능이었던 것이다. "배열 스프레드는 이터러블 프로토콜, 객체 스프레드는 프로퍼티 복사" — 이렇게 갈라 두면 안 섞인다.
@@ -79,4 +79,4 @@ const unique = [...new Set([1, 2, 2, 3, 3])]; // [1, 2, 3]
 
 "순회 가능"은 타입이 타고나는 성질이 아니라 **프로토콜 준수 여부**다. `Symbol.iterator`라는 자격증만 있으면 for...of, 스프레드, 구조 분해가 전부 열린다 — 반대로 자격증 없는 일반 객체는 생김새가 어떻든 닫혀 있다.
 
-여기까지가 한 파일 안의 이야기다. 시리즈의 마지막 질문은 파일 경계를 넘는다 — 파일과 파일은 어떻게 이어지고, 왜 `import`와 `require` 두 가지 방식이 존재할까. → [ESM과 CJS는 뭐가 다른가](/javascript/22-esm-vs-cjs)
+여기까지가 한 파일 안의 이야기다. 이젠 파일과 파일은 어떻게 이어지고, 왜 `import`와 `require` 두 가지 방식이 존재할까를 알아보자 → [ESM과 CJS는 뭐가 다른가](/javascript/22-esm-vs-cjs)
