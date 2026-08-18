@@ -5,7 +5,7 @@ description: await 남발이 느린 이유, 순차 vs 병렬 — 그리고 all, 
 
 # Promise.all은 언제 쓰나
 
-[지난 글](/javascript/19-async-await) 끝에서 예고한 함정부터. 각각 1초 걸리는 독립적인 요청 세 개를 이렇게 썼다.
+[지난 글](/javascript/19-async-await) 끝에서 예고한 주의할점 부터, 각각 1초 걸리는 독립적인 요청 세 개를 이렇게 썼다.
 
 ```javascript
 async function loadDashboard() {
@@ -45,26 +45,9 @@ const [user, posts, weather] = await Promise.all([
 ]); // 약 1초 — 제일 느린 것만큼만 걸린다
 ```
 
-<svg viewBox="0 0 680 250" role="img" aria-label="await 연쇄는 세 요청이 순차로 3초 걸리고, Promise.all은 동시에 출발해 1초 걸리는 타임라인 비교" style="max-width:680px;width:100%;height:auto;margin:16px 0">
-<text x="20" y="56" class="pl-c">await 연쇄</text>
-<rect x="140" y="42" width="160" height="20" rx="4" class="pl-bar"/>
-<text x="220" y="57" text-anchor="middle" class="pl-in">user</text>
-<rect x="300" y="42" width="160" height="20" rx="4" class="pl-bar"/>
-<text x="380" y="57" text-anchor="middle" class="pl-in">posts</text>
-<rect x="460" y="42" width="160" height="20" rx="4" class="pl-bar"/>
-<text x="540" y="57" text-anchor="middle" class="pl-in">weather</text>
-<text x="628" y="57" class="pl-dim">3초</text>
-<text x="140" y="92" class="pl-dim">앞이 끝나야 뒤가 출발한다</text>
-<text x="20" y="150" class="pl-c">Promise.all</text>
-<rect x="140" y="136" width="160" height="20" rx="4" class="pl-ok"/>
-<text x="220" y="151" text-anchor="middle" class="pl-in">user</text>
-<rect x="140" y="162" width="160" height="20" rx="4" class="pl-ok"/>
-<text x="220" y="177" text-anchor="middle" class="pl-in">posts</text>
-<rect x="140" y="188" width="160" height="20" rx="4" class="pl-ok"/>
-<text x="220" y="203" text-anchor="middle" class="pl-in">weather</text>
-<text x="308" y="177" class="pl-dim">1초 — 제일 느린 것만큼만</text>
-<text x="140" y="238" class="pl-dim">셋이 동시에 출발한다 — 순서는 await이 아니라 의존 관계가 정해야 한다</text>
-</svg>
+아래 이미지를 통해 시각적으로 확인해볼 수 있다.
+
+![await 연쇄는 user·posts·weather가 순차 실행되어 3초, Promise.all은 셋이 동시 출발해 1초가 걸리는 것을 비교한 다이어그램](/images/javascript/20-await-chain-vs-promise-all.png)
 
 기준은 명확하다. **뒤 요청이 앞 결과를 필요로 하면 await 연쇄(순차), 서로 독립이면 Promise.all(병렬).** 순서를 정하는 건 문법 편의가 아니라 데이터 의존 관계여야 한다.
 
@@ -80,7 +63,9 @@ Promise.all([
 ]).catch(console.log); // Error: Error 3 — 가장 먼저 실패한 것
 ```
 
-"전부 있어야 화면을 그릴 수 있다"면 맞는 성격이다. 하지만 "위젯 셋 중 하나 실패해도 나머지는 보여주고 싶다"면 곤란하다 — 그럴 때가 `allSettled`다. 성공이든 실패든 **전원의 결과**를 기다렸다가 `{status, value}` 또는 `{status, reason}` 객체 배열로 준다.
+"전부 있어야 화면을 그릴 수 있다"면 맞는 성격이다. 하지만 "위젯 셋 중 하나 실패해도 나머지는 보여주고 싶다"면 곤란하다. 
+
+그럴 때 사용하는것이 `allSettled`다. 성공이든 실패든 **전원의 결과**를 기다렸다가 `{status, value}` 또는 `{status, reason}` 객체 배열로 준다.
 
 ```javascript
 const results = await Promise.allSettled([fetchA(), fetchB(), fetchC()]);
@@ -105,7 +90,7 @@ const data = await Promise.race([fetchData(), timeout(5000)]);
 | `race` | 첫 settled | 그 값 or 그 에러 | 시간제한, 먼저 온 것 |
 | `any` | 첫 성공 or 전원 실패 | 그 값 / AggregateError | 하나만 성공하면 된다 |
 
-마지막으로 심화 포인트 하나. `all`이 첫 실패로 reject돼도 **나머지 프로미스가 취소되는 것은 아니다.** 프로미스에는 취소 개념이 없어서, 결과만 무시될 뿐 뒤에서 요청은 끝까지 실행된다. 진짜 중단이 필요하면 `AbortController` 같은 별도 메커니즘을 붙여야 한다.
+마지막으로 포인트 하나를 짚자면 `all`이 첫 실패로 reject돼도 **나머지 프로미스가 취소되는 것은 아니다.** 프로미스에는 취소 개념이 없어서, 결과만 무시될 뿐 뒤에서 요청은 끝까지 실행된다. 진짜 중단이 필요하면 `AbortController` 같은 별도 메커니즘을 붙여야 한다.
 
 ---
 
