@@ -5,7 +5,7 @@ description: 마이크로태스크 큐는 매 틱 전부 비워지는 우선 큐
 
 # Promise.then과 setTimeout, 누가 먼저인가
 
-[지난 글](/javascript/16-event-loop)의 이해를 시험하는 문제로 시작한다.
+[지난 글](/javascript/16-event-loop)의 이해를 시험하는 문제로 시작해보자.
 
 ```javascript
 console.log('A');
@@ -17,11 +17,11 @@ Promise.resolve().then(() => console.log('C'));
 console.log('D');
 ```
 
-지난 글대로라면 이렇게 추론하게 된다. 동기 코드인 A와 D가 먼저, 그리고 큐에 등록된 순서대로 B가 C보다 먼저. 그래서 나는 `A D B C`라고 답했다. 실제 출력은 **`A D C B`**다. 나중에 등록된 Promise 콜백이 setTimeout을 앞질렀다.
+지난 글대로라면 이렇게 추측하게 된다. 동기 코드인 A와 D가 먼저, 그리고 큐에 등록된 순서대로 B가 C보다 먼저. 그래서 나는 `A D B C`라고 답했다. 실제 출력은 **`A D C B`** 다. 나중에 등록된 Promise 콜백이 setTimeout을 앞질렀다.
 
 ## 큐가 하나가 아니었다
 
-내 추론이 틀린 이유는 "큐에 등록된 순서대로"라는 전제에 있었다. 콜백이 서는 대기줄은 **두 개**고, 어느 줄에 서는지는 콜백의 출신이 결정한다.
+내 추측이 틀린 이유는 "큐에 등록된 순서대로"라는 전제에 있었다. 콜백이 서는 대기줄은 **두 개**고, 어느 줄에 서는지는 콜백의 출신이 결정한다.
 
 - **매크로태스크 큐**(그냥 "태스크 큐"라고도 한다): `setTimeout`/`setInterval`의 콜백, 클릭 같은 이벤트 핸들러
 - **마이크로태스크 큐**: `Promise.then/catch/finally`의 콜백, `queueMicrotask`, `MutationObserver`
