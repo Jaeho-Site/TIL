@@ -30,7 +30,7 @@ get('/step1', a => {
 });
 ```
 
-콜백 헬(callback hell)이다. 그런데 정리하면서 알게 됐는데, 사실 들여쓰기는 **부차적인 문제**다.
+콜백 헬(callback hell)이다. 예전에 공부하면서 알게 됐는데, 사실 들여쓰기는 **부차적인 문제**다.
 
 ## 진짜 문제는 에러가 샌다는 것
 
@@ -48,7 +48,7 @@ try {
 
 한 가지 더, 콜백은 **제어권을 넘기는 방식**이다. 내 후속 처리를 남의 함수에 인자로 맡기면, 그 함수가 콜백을 한 번 부를지 두 번 부를지 안 부를지 보장할 방법이 없다.
 
-## 프로미스: 미래의 결과를 담는 객체
+## Promise: 미래의 결과를 담는 객체
 
 ES6의 프로미스는 발상을 뒤집는다. 후속 처리를 넘기는 대신, **비동기 처리의 미래 결과를 담을 객체를 먼저 돌려준다.**
 
@@ -76,25 +76,9 @@ const promise = promiseGet('/posts/1'); // 결과를 "담을 그릇"이 즉시 �
 
 이 객체는 세 가지 상태 중 하나에 있다.
 
-<svg viewBox="0 0 680 240" role="img" aria-label="pending 상태에서 resolve하면 fulfilled, reject하면 rejected로 전이하고, 한 번 settled되면 바뀌지 않는 프로미스 상태 다이어그램" style="max-width:680px;width:100%;height:auto;margin:16px 0">
-<defs><marker id="pm-ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--vp-c-brand-1)"/></marker></defs>
-<rect x="30" y="88" width="160" height="54" rx="8" class="pm-box"/>
-<text x="110" y="110" text-anchor="middle" class="pm-s">pending</text>
-<text x="110" y="130" text-anchor="middle" class="pm-dim">아직 결과 없음</text>
-<rect x="430" y="34" width="220" height="54" rx="8" class="pm-ok"/>
-<text x="540" y="56" text-anchor="middle" class="pm-s">fulfilled — 성공, 값 보유</text>
-<text x="540" y="76" text-anchor="middle" class="pm-dim">then 콜백이 실행된다</text>
-<rect x="430" y="152" width="220" height="54" rx="8" class="pm-bad"/>
-<text x="540" y="174" text-anchor="middle" class="pm-s">rejected — 실패, 에러 보유</text>
-<text x="540" y="194" text-anchor="middle" class="pm-dim">catch 콜백이 실행된다</text>
-<path d="M194,100 C300,90 340,72 425,64" fill="none" stroke="var(--vp-c-brand-1)" stroke-width="2" marker-end="url(#pm-ah)"/>
-<text x="300" y="66" text-anchor="middle" class="pm-hl">resolve(value)</text>
-<path d="M194,130 C300,140 340,168 425,176" fill="none" stroke="var(--vp-c-brand-1)" stroke-width="2" marker-end="url(#pm-ah)"/>
-<text x="300" y="180" text-anchor="middle" class="pm-hl">reject(error)</text>
-<text x="30" y="230" class="pm-dim">fulfilled나 rejected가 되면 settled(결정됨) — 이후 상태는 다시 바뀌지 않는다</text>
-</svg>
+![Promise객체는 3개의 상태(pending, fulfilled, rejected)가 있다.](/images/javascript/18-promise-three-states.png)
 
-이 구조가 콜백의 문제들을 어떻게 푸는지가 핵심이다. **결과가 객체에 저장되므로 값처럼 다룰 수 있다** — 반환할 수 있고, 변수에 담을 수 있고, 나중에 `then`을 걸어도 저장된 결과를 받는다. 상태는 한 번 정해지면 불변이라 콜백이 두 번 불리는 사고도 없다. 그리고 에러는 —
+이 구조가 콜백의 문제들을 어떻게 푸는지가 핵심이다. **결과가 객체에 저장되므로 값처럼 다룰 수 있다** — 반환할 수 있고, 변수에 담을 수 있고, 나중에 `then`을 걸어도 저장된 결과를 받는다. 상태는 한 번 정해지면 불변이라 콜백이 두 번 불리는 사고도 없다.
 
 ## 에러는 체인을 타고 흐른다
 
