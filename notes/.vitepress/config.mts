@@ -16,6 +16,17 @@ export default defineConfig({
   ['meta', { name: 'naver-site-verification', content: 'dd667c83f23b79886395a0a70e733d9ca8713aae' }]
 ],
 
+  transformPageData(pageData) {
+    const path = pageData.relativePath
+      .replace(/index\.md$/, '')
+      .replace(/\.md$/, '')
+    pageData.frontmatter.head ??= []
+    pageData.frontmatter.head.push([
+      'link',
+      { rel: 'canonical', href: `https://notes.ezilog.dev/${path}` }
+    ])
+  },
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
