@@ -1,4 +1,12 @@
 {
   "buildCommand": "npm run docs:build",
-  "outputDirectory": ".vitepress/dist"
+  "outputDirectory": ".vitepress/dist",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "til-ruby.vercel.app" }],
+      "destination": "https://notes.ezilog.dev/:path*",
+      "permanent": true
+    }
+  ]
 }
