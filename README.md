@@ -20,14 +20,16 @@ JavaScript와 TypeScript의 동작 원리를 단단히 다지는 것을 최우�
 
 | 경로 | 내용 |
 |------|------|
-| 📂 `code-example/` | 오늘 학습한 내용, JS / TS 학습 중 마주친 개념을 직접 코드로 학습 |
-| 📂 `notes/` | 서브 블로그, 프론트엔드 학습 회고 (오픈 준비 및 채워나갈 예정) |
+| 📂 `language/` | JS / Java / C·C++ / Python / SQL 문법과 동작 원리를 직접 코드로 학습 |
+| 📂 `notes/` | 서브 블로그 [notes.ezilog.dev](https://notes.ezilog.dev), 프론트엔드 학습 회고 |
 | 📂 `python/` | 코딩테스트 대비 Python 알고리즘 풀이 (백준, 프로그래머스 등) |
 | 📂 `SQL/` | SQL 쿼리 연습 (프로그래머스 KIT, 리트코드 등) |
 | 📂 `ezilog-posts/` | 메인 블로그(ezilog)에 발행할 회고·정리글 모음 |
+| 📂 `project/` | 진행 중인 프로젝트의 기획·설계 문서 |
+| 📂 `else/` | 이론 핵심 키워드 암기장 |
 
 
 ## 회고
 
 학습한 내용은 추후 `notes/`에 정리하고,
-보다 정제된 핵심 글은 메인 블로그 [ezilog](https://ezilog.vercel.app)에 작성합니다.
+보다 정제된 핵심 글은 메인 블로그 [ezilog](https://ezilog.dev)에 작성합니다.
