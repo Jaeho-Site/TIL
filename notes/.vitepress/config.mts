@@ -8,6 +8,10 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
 
+  sitemap: {
+    hostname: 'https://notes.ezilog.dev'
+  },
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -20,7 +24,8 @@ export default defineConfig({
         ]
       },
       { text: 'Network', link: '/network/' },
-      { text: 'OS', link: '/operating-system/' }
+      { text: 'OS', link: '/operating-system/' },
+      { text: 'Blog', link: 'https://ezilog.dev' }
     ],
 
     sidebar: {
