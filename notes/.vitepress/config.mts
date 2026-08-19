@@ -12,6 +12,10 @@ export default defineConfig({
     hostname: 'https://notes.ezilog.dev'
   },
 
+  head: [
+    ['meta', { name: 'naver-site-verification', content: '발급받은_값' }]
+  ],
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
