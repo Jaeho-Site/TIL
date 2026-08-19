@@ -13,8 +13,8 @@ export default defineConfig({
   },
 
   head: [
-    ['meta', { name: 'naver-site-verification', content: '발급받은_값' }]
-  ],
+  ['meta', { name: 'naver-site-verification', content: 'dd667c83f23b79886395a0a70e733d9ca8713aae' }]
+],
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
