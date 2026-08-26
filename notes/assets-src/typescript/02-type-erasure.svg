@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1040" viewBox="0 0 1440 1040" role="img" aria-labelledby="title desc">
+  <title id="title">TypeScript 타입 소거와 instanceof 실패</title>
+  <desc id="desc">빌드 전에는 타입 층에 Square, Rectangle, Shape가 있지만 빌드 후에는 타입이 모두 사라지고 값인 calculateArea 함수만 남아, instanceof Rectangle이 참조할 런타임 값을 찾지 못하는 구조</desc>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 Z" fill="#6b7280"/>
+    </marker>
+    <filter id="panel-shadow" x="-10%" y="-8%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1c1f26" flood-opacity="0.07"/>
+    </filter>
+    <filter id="card-shadow" x="-10%" y="-15%" width="120%" height="135%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1c1f26" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1440" height="1040" fill="#f4f5f7"/>
+
+  <!-- Main panels -->
+  <g filter="url(#panel-shadow)">
+    <rect x="50" y="45" width="580" height="775" rx="18" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    <rect x="810" y="45" width="580" height="775" rx="18" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+
+  <!-- Panel headers -->
+  <rect x="50" y="45" width="580" height="86" rx="18" fill="#ffffff"/>
+  <path d="M 50 113 L 50 131 L 630 131 L 630 113" fill="#ffffff"/>
+  <line x1="50" y1="131" x2="630" y2="131" stroke="#d0d4dc" stroke-width="2"/>
+  <circle cx="94" cy="88" r="10" fill="#6c5ce7"/>
+  <text x="120" y="99" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="34" font-weight="750">컴파일 전 (.ts)</text>
+
+  <rect x="810" y="45" width="580" height="86" rx="18" fill="#ffffff"/>
+  <path d="M 810 113 L 810 131 L 1390 131 L 1390 113" fill="#ffffff"/>
+  <line x1="810" y1="131" x2="1390" y2="131" stroke="#d0d4dc" stroke-width="2"/>
+  <circle cx="854" cy="88" r="10" fill="#27ae60"/>
+  <text x="880" y="99" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="34" font-weight="750">런타임 (.js)</text>
+
+  <!-- Left: type layer -->
+  <rect x="75" y="154" width="530" height="350" rx="16" fill="#f3f0fd"/>
+  <rect x="95" y="174" width="110" height="38" rx="19" fill="#6c5ce7"/>
+  <text x="150" y="201" text-anchor="middle" fill="#ffffff" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="700">타입 층</text>
+  <text x="224" y="201" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23">검사할 때만 존재</text>
+
+  <g filter="url(#card-shadow)">
+    <rect x="100" y="229" width="480" height="70" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    <rect x="100" y="315" width="480" height="70" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    <rect x="100" y="401" width="480" height="70" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+  <rect x="100" y="229" width="8" height="70" rx="4" fill="#6c5ce7"/>
+  <rect x="100" y="315" width="8" height="70" rx="4" fill="#6c5ce7"/>
+  <rect x="100" y="401" width="8" height="70" rx="4" fill="#6c5ce7"/>
+  <text x="132" y="273" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="25" font-weight="650">interface Square</text>
+  <text x="132" y="359" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="25" font-weight="650">interface Rectangle</text>
+  <text x="132" y="445" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="25" font-weight="650">type Shape</text>
+
+  <!-- Left: value layer -->
+  <rect x="75" y="526" width="530" height="264" rx="16" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="95" y="546" width="98" height="38" rx="19" fill="#27ae60"/>
+  <text x="144" y="573" text-anchor="middle" fill="#ffffff" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="700">값 층</text>
+  <text x="212" y="573" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23">실행할 때도 존재</text>
+
+  <g filter="url(#card-shadow)">
+    <rect x="100" y="610" width="480" height="142" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+  <rect x="100" y="610" width="8" height="142" rx="4" fill="#27ae60"/>
+  <text x="132" y="651" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="22">
+    <tspan x="132" dy="0">function calculateArea(shape) {</tspan>
+    <tspan x="132" dy="34">&#160;&#160;...</tspan>
+    <tspan x="132" dy="34">}</tspan>
+  </text>
+
+  <!-- Build / type erasure transition -->
+  <text x="720" y="336" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="26" font-weight="750">빌드</text>
+  <text x="720" y="371" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="25" font-weight="750">타입 소거</text>
+  <line x1="655" y1="410" x2="785" y2="410" stroke="#6b7280" stroke-width="7" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+
+  <!-- Right: empty type layer with ghost cards -->
+  <rect x="835" y="154" width="530" height="350" rx="16" fill="#f3f0fd"/>
+  <rect x="855" y="174" width="110" height="38" rx="19" fill="#ffffff" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="910" y="201" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="700">타입 층</text>
+  <text x="984" y="201" fill="#6b7280" fill-opacity="0.72" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23">빌드 후 비어 있음</text>
+
+  <g fill="#ffffff" fill-opacity="0.28" stroke="#6b7280" stroke-opacity="0.46" stroke-width="2" stroke-dasharray="9 8">
+    <rect x="860" y="229" width="450" height="70" rx="12"/>
+    <rect x="860" y="315" width="450" height="70" rx="12"/>
+    <rect x="860" y="401" width="450" height="70" rx="12"/>
+  </g>
+  <g fill="#6b7280" fill-opacity="0.50" font-family="ui-monospace, Menlo, monospace" font-size="25" font-weight="650">
+    <text x="890" y="273">interface Square</text>
+    <text x="890" y="359">interface Rectangle</text>
+    <text x="890" y="445">type Shape</text>
+  </g>
+
+  <!-- Right: value layer -->
+  <rect x="835" y="526" width="530" height="264" rx="16" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="855" y="546" width="98" height="38" rx="19" fill="#27ae60"/>
+  <text x="904" y="573" text-anchor="middle" fill="#ffffff" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="700">값 층</text>
+  <text x="972" y="573" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23">그대로 남음</text>
+
+  <g filter="url(#card-shadow)">
+    <rect x="860" y="610" width="450" height="142" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+  <rect x="860" y="610" width="8" height="142" rx="4" fill="#27ae60"/>
+  <text x="892" y="651" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="22">
+    <tspan x="892" dy="0">function calculateArea(shape) {</tspan>
+    <tspan x="892" dy="34">&#160;&#160;...</tspan>
+    <tspan x="892" dy="34">}</tspan>
+  </text>
+
+  <!-- Failed runtime reference from value to erased interface -->
+  <path d="M 1310 681 L 1342 681 L 1342 350 L 1312 350" fill="none" stroke="#6b7280" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrowhead)"/>
+  <circle cx="1342" cy="509" r="19" fill="#ffffff" stroke="#e74c3c" stroke-width="3"/>
+  <path d="M 1334 501 L 1350 517 M 1350 501 L 1334 517" fill="none" stroke="#e74c3c" stroke-width="4" stroke-linecap="round"/>
+  <text x="1307" y="493" text-anchor="end" fill="#e74c3c" font-family="ui-monospace, Menlo, monospace" font-size="23" font-weight="700">shape instanceof Rectangle</text>
+  <text x="1307" y="524" text-anchor="end" fill="#e74c3c" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="700">참조할 값이 없다</text>
+
+  <!-- Bottom callout -->
+  <rect x="50" y="860" width="1340" height="132" rx="12" fill="#f3f0fd" stroke="#d8d1f7" stroke-width="2"/>
+  <circle cx="108" cy="926" r="27" fill="#6c5ce7"/>
+  <path d="M 96 926 L 105 935 L 121 916" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="156" y="915" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="26" font-weight="750">런타임에 남는 것은 값뿐이다</text>
+  <text x="156" y="954" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="26">
+    — 타입으로 분기하려면&#160;<tspan fill="#6c5ce7" font-weight="750">값(속성·태그·생성자)</tspan>에 정보를 실어야 한다
+  </text>
+</svg>
