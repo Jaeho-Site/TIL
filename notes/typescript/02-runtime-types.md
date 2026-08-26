@@ -39,3 +39,46 @@ error TS2693: 'Rectangle' only refers to a type, but is being used as a value he
 
 
 지난 글의 결론을 여기에 적용하면 이렇게 된다. **런타임에 타입을 확인하고 싶다면, 런타임까지 살아남는 무언가에 타입 정보를 실어 보내야 한다.** 방법은 세 가지다.
+
+## 방법 1 — 값에 이미 있는 속성을 검사한다
+
+`Rectangle`이라는 이름은 지워져도, 사각형 객체가 들고 있는 `height` 속성은 런타임에 실재한다.
+
+```typescript
+function calculateArea(shape: Shape) {
+  if ('height' in shape) {
+    return shape.width * shape.height; // 여기서 shape는 Rectangle
+  } else {
+    return shape.width * shape.width; // 여기서 shape는 Square
+  }
+}
+```
+
+흥미로운 건 타입 체커의 반응이다. `if` 블록 안에서 `shape`에 마우스를 올리면 `Rectangle`로 좁혀져 있다. 런타임 검사는 자바스크립트가 하는데, 타입 체커가 그 검사를 읽고 타입 층에 반영해 주는 것이다. 이 "좁히기"가 어디까지 똑똑한지는 나중에 따로 파본다.
+
+## 방법 2 — 태그를 붙인다
+
+속성 유무로 구분하는 게 우연에 기대는 느낌이라면, 아예 구분용 값을 명시적으로 넣을 수 있다.
+
+```typescript
+interface Square {
+  kind: 'square';
+  width: number;
+}
+interface Rectangle {
+  kind: 'rectangle';
+  width: number;
+  height: number;
+}
+type Shape = Square | Rectangle;
+
+function calculateArea(shape: Shape) {
+  if (shape.kind === 'rectangle') {
+    return shape.width * shape.height;
+  } else {
+    return shape.width * shape.width;
+  }
+}
+```
+
+`kind`는 평범한 문자열 속성이라 런타임에 존재하고, 타입 체커도 `kind` 비교로 타입을 정확히 좁힌다. 이 패턴을 **태그된 유니온**(tagged union)이라고 부르는데, 사실 타입스크립트 설계 전반에서 제일 중요한 패턴 중 하나라 뒤에서 한 편을 통째로 쓸 예정이다.
