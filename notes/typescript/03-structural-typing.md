@@ -60,3 +60,48 @@ function calculateLengthL1(v: Vector3D) {
 ```
 
 "`Vector3D`의 키는 x, y, z 셋뿐이니 `v[axis]`는 당연히 number"라고 생각했는데 에러가 난다. 처음엔 컴파일러가 융통성이 없다고 생각했다. 하지만 타입이 열려 있다는 걸 받아들이면 컴파일러가 맞다. `{x: 3, y: 4, z: 1, address: '123 Broadway'}` 같은 값도 완벽한 `Vector3D`고, 이 값이 들어오면 `v[axis]`는 문자열일 수 있다. `Object.keys`로 타입을 순회하려는 시도가 왜 자꾸 막히는지는 뒤에서 keyof를 다룰 때 다시 만난다.
+
+## 클래스조차 구조로만 본다
+
+더 극단적인 예도 있다. 클래스의 인스턴스 타입도 구조적으로 검사된다.
+
+```typescript
+class SmallNumContainer {
+  num: number;
+  constructor(num: number) {
+    if (num < 0 || num >= 10) {
+      throw new Error(`0~9만 받는다`);
+    }
+    this.num = num;
+  }
+}
+
+const a = new SmallNumContainer(5);
+const b: SmallNumContainer = { num: 2024 }; // 통과!
+```
+
+생성자의 검증 로직을 한 줄도 거치지 않은 `{ num: 2024 }`가 `SmallNumContainer` 타입으로 인정된다. 구조(`num: number`)만 맞으면 되기 때문이다. "이 클래스의 인스턴스니까 생성자의 불변식이 보장된다"는 가정은 타입스크립트에서는 성립하지 않는다.
+
+## 이 설계가 주는 선물
+
+불안한 예만 보면 구조적 타이핑이 결함처럼 느껴지지만, 사실 실무에서 매일 덕을 보는 쪽이 크다. 대표적인 게 테스트다.
+
+```typescript
+interface DB {
+  runQuery: (sql: string) => any[];
+}
+function getAuthors(database: DB): Author[] { /* ... */ }
+
+// 테스트에서 — 진짜 PostgresDB 없이 구조만 맞는 객체를 넘긴다
+const authors = getAuthors({
+  runQuery(sql: string) {
+    return [['Toni', 'Morrison'], ['Maya', 'Angelou']];
+  },
+});
+```
+
+`DB` 인터페이스를 `implements`한 목(mock) 클래스를 만들 필요가 없다. `runQuery`만 있으면 무엇이든 `DB`다. 라이브러리와 내 코드 사이의 결합도 같은 원리로 느슨해진다.
+
+---
+
+타입스크립트에서 어떤 값이 어떤 타입인지는 **이름의 족보가 아니라 구조가 결정하고, 그 구조는 최소 조건일 뿐이라 타입은 항상 열려 있다**. 그런데 이 결론이 바로 다음 실험에서 깨지는 것처럼 보였다. 타입이 열려 있다면 속성이 더 달린 객체 리터럴을 바로 넘겨도 돼야 할 텐데, 실제로 해보면 에러가 난다. → [객체 리터럴만 더 엄격하게 검사되는 이유](/typescript/04-excess-property-checking)
