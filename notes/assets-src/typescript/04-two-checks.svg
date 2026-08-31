@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1040" viewBox="0 0 1440 1040" role="img" aria-labelledby="title desc">
+  <title id="title">TypeScript 객체 할당의 두 검사 경로</title>
+  <desc id="desc">같은 객체 모양이라도 객체 리터럴을 직접 할당하면 잉여 속성 검사가 발동해 에러가 나고, 중간 변수를 경유하면 할당 가능성 검사만 통과하는 흐름을 비교한 다이어그램</desc>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 Z" fill="#6b7280"/>
+    </marker>
+    <filter id="card-shadow" x="-10%" y="-15%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1c1f26" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1440" height="1040" fill="#f4f5f7"/>
+
+  <!-- Source object literal -->
+  <g filter="url(#card-shadow)">
+    <rect x="170" y="38" width="1100" height="132" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    <rect x="170" y="38" width="9" height="132" rx="4.5" fill="#6c5ce7"/>
+  </g>
+  <text x="720" y="78" text-anchor="middle" fill="#6c5ce7"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="700">검사 대상 객체 리터럴</text>
+  <text x="720" y="127" text-anchor="middle" xml:space="preserve" fill="#1c1f26"
+        font-family="ui-monospace, Menlo, monospace" font-size="25" font-weight="600"><tspan>{ numDoors: 1, ceilingHeightFt: 10,&#160;</tspan><tspan fill="#e74c3c">elephant</tspan><tspan>: "present" }</tspan></text>
+
+  <!-- Split arrows -->
+  <g fill="none" stroke="#6b7280" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrowhead)">
+    <path d="M 720 170 L 720 218 L 380 218 L 380 264"/>
+    <path d="M 720 170 L 720 218 L 1060 218 L 1060 264"/>
+  </g>
+  <circle cx="720" cy="218" r="7" fill="#6c5ce7"/>
+
+  <!-- Path labels -->
+  <text x="380" y="310" text-anchor="middle" fill="#1c1f26"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="33" font-weight="750">A. 리터럴을 직접 할당</text>
+  <text x="1060" y="310" text-anchor="middle" fill="#1c1f26"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="33" font-weight="750">B. 중간 변수를 경유</text>
+
+  <!-- Step 1 cards -->
+  <g filter="url(#card-shadow)">
+    <rect x="70" y="342" width="620" height="136" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    <rect x="750" y="342" width="620" height="136" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+  <rect x="70" y="342" width="8" height="136" rx="4" fill="#27ae60"/>
+  <rect x="750" y="342" width="8" height="136" rx="4" fill="#27ae60"/>
+
+  <text x="105" y="388" fill="#1c1f26"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="27" font-weight="700">할당 가능성 검사</text>
+  <circle cx="118" cy="438" r="19" fill="#27ae60"/>
+  <path d="M 109 438 L 116 445 L 128 431" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="151" y="446" fill="#27ae60"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="25" font-weight="700">통과</text>
+  <text x="214" y="446" fill="#6b7280"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24">(구조 만족)</text>
+
+  <text x="785" y="388" fill="#1c1f26"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="27" font-weight="700">할당 가능성 검사</text>
+  <circle cx="798" cy="438" r="19" fill="#27ae60"/>
+  <path d="M 789 438 L 796 445 L 808 431" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="831" y="446" fill="#27ae60"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="25" font-weight="700">통과</text>
+  <text x="894" y="446" fill="#6b7280"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24">(구조 만족)</text>
+
+  <!-- Step connectors -->
+  <g fill="none" stroke="#6b7280" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowhead)">
+    <path d="M 380 478 L 380 524"/>
+    <path d="M 1060 478 L 1060 524"/>
+  </g>
+
+  <!-- Step 2: direct literal triggers excess-property checking -->
+  <g filter="url(#card-shadow)">
+    <rect x="70" y="542" width="620" height="178" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+  <rect x="70" y="542" width="8" height="178" rx="4" fill="#e74c3c"/>
+  <text x="105" y="591" fill="#1c1f26"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="27" font-weight="700">잉여 속성 검사</text>
+  <circle cx="118" cy="652" r="20" fill="#e74c3c"/>
+  <path d="M 111 645 L 125 659 M 125 645 L 111 659" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+  <text x="153" y="648" fill="#e74c3c"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="25" font-weight="700">elephant는 Room에 없다</text>
+  <text x="153" y="684" fill="#e74c3c"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="25" font-weight="700">— 에러</text>
+
+  <!-- Step 2: intermediate variable skips excess-property checking -->
+  <rect x="750" y="542" width="620" height="178" rx="12" fill="#f4f5f7" stroke="#6b7280" stroke-width="2" stroke-dasharray="10 9"/>
+  <circle cx="798" cy="590" r="18" fill="none" stroke="#6b7280" stroke-width="2.5" stroke-dasharray="5 4"/>
+  <path d="M 789 590 L 807 590" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+  <text x="831" y="599" fill="#6b7280"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="27" font-weight="700">잉여 속성 검사</text>
+  <text x="798" y="652" fill="#6b7280"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="25" font-weight="650">발동 안 함</text>
+  <text x="798" y="687" fill="#6b7280"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24">(리터럴이 아니다)</text>
+
+  <!-- Final result for intermediate-variable path -->
+  <path d="M 1060 720 L 1060 756" fill="none" stroke="#6b7280" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+  <g filter="url(#card-shadow)">
+    <rect x="750" y="774" width="620" height="86" rx="12" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+  </g>
+  <circle cx="1000" cy="817" r="20" fill="#27ae60"/>
+  <path d="M 991 817 L 998 824 L 1010 810" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1034" y="826" fill="#27ae60"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="29" font-weight="800">통과</text>
+
+  <!-- Bottom callout -->
+  <rect x="50" y="898" width="1340" height="104" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="2"/>
+  <circle cx="106" cy="950" r="24" fill="#6c5ce7"/>
+  <text x="106" y="959" text-anchor="middle" fill="#ffffff"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="28" font-weight="800">!</text>
+  <text x="150" y="959" fill="#1c1f26"
+        font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="26" font-weight="650">잉여 속성 검사는 할당 가능성과 별개다 — 갓 만든 객체 리터럴에만 발동한다</text>
+</svg>
