@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="920" viewBox="0 0 1440 920" role="img" aria-labelledby="title desc">
+  <title id="title">TypeScript 타입은 값의 집합이다</title>
+  <desc id="desc">Person과 Lifespan 타입을 값의 집합으로 나타내고, 두 타입의 교집합이 name과 birth를 모두 가진 값임을 보여주는 벤 다이어그램</desc>
+
+  <defs>
+    <filter id="card-shadow" x="-15%" y="-20%" width="130%" height="150%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1c1f26" flood-opacity="0.07"/>
+    </filter>
+  </defs>
+
+  <!-- Background: the complete set of unknown values -->
+  <rect width="1440" height="920" fill="#f4f5f7"/>
+  <rect x="50" y="35" width="1340" height="715" rx="18" fill="none" stroke="#d0d4dc" stroke-width="2" stroke-dasharray="9 10"/>
+  <rect x="72" y="52" width="304" height="42" rx="8" fill="#f4f5f7"/>
+  <text x="86" y="80" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="600">unknown — 모든 값의 집합</text>
+
+  <!-- Set labels -->
+  <text x="355" y="111" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="34" font-weight="750">Person</text>
+  <text x="355" y="146" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24">name이 string인 모든 값</text>
+
+  <text x="1065" y="111" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="34" font-weight="750">Lifespan</text>
+  <text x="1065" y="146" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24">birth가 Date인 모든 값</text>
+
+  <!-- Venn sets -->
+  <circle cx="560" cy="445" r="290" fill="#6c5ce7" fill-opacity="0.10" stroke="#6c5ce7" stroke-width="2.5"/>
+  <circle cx="860" cy="445" r="290" fill="#27ae60" fill-opacity="0.10" stroke="#27ae60" stroke-width="2.5"/>
+
+  <!-- Intersection label -->
+  <text x="710" y="302" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="33" font-weight="750">Person &amp; Lifespan</text>
+  <text x="710" y="340" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24">name과 birth를 모두 가진 값</text>
+
+  <!-- Example value: Person only -->
+  <g filter="url(#card-shadow)">
+    <rect x="295" y="430" width="258" height="80" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+  <text x="424" y="479" text-anchor="middle" fill="#1c1f26" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22">{ name: 'Alan' }</text>
+
+  <!-- Example value: intersection -->
+  <g filter="url(#card-shadow)">
+    <rect x="578" y="439" width="264" height="112" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+  <text x="604" y="483" fill="#1c1f26" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22">
+    <tspan x="604" dy="0">{ name: 'Alan',</tspan>
+    <tspan x="604" dy="35">&#160;&#160;birth: Date }</tspan>
+  </text>
+
+  <!-- Example value: Lifespan only -->
+  <g filter="url(#card-shadow)">
+    <rect x="867" y="430" width="272" height="80" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+  <text x="1003" y="479" text-anchor="middle" fill="#1c1f26" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22">{ birth: Date }</text>
+
+  <!-- Bottom callout -->
+  <rect x="50" y="790" width="1340" height="92" rx="12" fill="#f3f0fd" stroke="#ded8f7" stroke-width="1.5"/>
+  <circle cx="104" cy="836" r="23" fill="#6c5ce7"/>
+  <path d="M 94 836 L 101 843 L 115 828" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="144" y="845" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="26" font-weight="650">교집합(&amp;)은 값의 집합에 적용된다 — 집합이 좁아질수록 요구 속성은 늘어난다</text>
+</svg>
