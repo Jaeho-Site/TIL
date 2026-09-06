@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1020" viewBox="0 0 1440 1020" role="img" aria-labelledby="title desc">
+  <title id="title">TypeScript의 타입 공간과 값 공간</title>
+  <desc id="desc">Cylinder라는 같은 이름이 타입 공간에는 인터페이스로, 값 공간에는 런타임 함수로 따로 등록되며 class는 두 공간 모두에 등록됨을 보여주는 다이어그램</desc>
+
+  <defs>
+    <filter id="card-shadow" x="-15%" y="-20%" width="130%" height="150%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1c1f26" flood-opacity="0.07"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 Z" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1440" height="1020" fill="#f4f5f7"/>
+
+  <!-- Type space panel -->
+  <g>
+    <rect x="50" y="40" width="650" height="520" rx="18" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="2"/>
+    <circle cx="102" cy="98" r="20" fill="#6c5ce7"/>
+    <text x="102" y="106" text-anchor="middle" fill="#ffffff" font-family="ui-monospace, Menlo, monospace" font-size="24" font-weight="700">T</text>
+    <text x="138" y="108" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="34" font-weight="750">타입 공간</text>
+    <text x="138" y="146" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24">빌드 때 지워진다</text>
+
+    <rect x="90" y="184" width="570" height="54" rx="12" fill="#ffffff" stroke="#6c5ce7" stroke-width="1.5"/>
+    <circle cx="120" cy="211" r="8" fill="#6c5ce7"/>
+    <text x="140" y="219" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="650">: 콜론 뒤 · as 뒤는 이쪽을 본다</text>
+
+    <text x="90" y="290" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="650">타입 명부</text>
+    <g filter="url(#card-shadow)">
+      <rect x="90" y="312" width="570" height="142" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    </g>
+    <text x="120" y="372" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="20" font-weight="650">Cylinder → interface 또는 class 인스턴스 타입</text>
+    <text x="120" y="418" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23">구조와 제약을 설명하는 이름</text>
+  </g>
+
+  <!-- Value space panel -->
+  <g>
+    <rect x="740" y="40" width="650" height="520" rx="18" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    <circle cx="792" cy="98" r="20" fill="#27ae60"/>
+    <text x="792" y="106" text-anchor="middle" fill="#ffffff" font-family="ui-monospace, Menlo, monospace" font-size="24" font-weight="700">V</text>
+    <text x="828" y="108" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="34" font-weight="750">값 공간</text>
+    <text x="828" y="146" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24">런타임에 존재한다</text>
+
+    <rect x="780" y="184" width="570" height="54" rx="12" fill="#edf9f2" stroke="#27ae60" stroke-width="1.5"/>
+    <circle cx="810" cy="211" r="8" fill="#27ae60"/>
+    <text x="830" y="219" fill="#187c43" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="650">instanceof · typeof(런타임) 는 이쪽을 본다</text>
+
+    <text x="780" y="290" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="650">값 명부</text>
+    <g filter="url(#card-shadow)">
+      <rect x="780" y="312" width="570" height="142" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    </g>
+    <text x="810" y="372" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="19" font-weight="650">Cylinder → const 화살표 함수 또는 class 생성자</text>
+    <text x="810" y="418" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23">실제로 호출하고 검사할 수 있는 값</text>
+  </g>
+
+  <!-- Registration arrows from class to both namespaces -->
+  <path d="M 615 700 C 560 647, 462 614, 375 563" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+  <path d="M 825 700 C 880 647, 978 614, 1065 563" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+
+  <rect x="288" y="596" width="266" height="46" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <circle cx="316" cy="619" r="7" fill="#6c5ce7"/>
+  <text x="334" y="627" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="650">인스턴스 타입 등록</text>
+
+  <rect x="886" y="596" width="266" height="46" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <circle cx="914" cy="619" r="7" fill="#27ae60"/>
+  <text x="932" y="627" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="650">생성자 함수 등록</text>
+
+  <!-- Class source card -->
+  <g filter="url(#card-shadow)">
+    <rect x="510" y="700" width="420" height="112" rx="12" fill="#ffffff" stroke="#6c5ce7" stroke-width="2.5"/>
+  </g>
+  <rect x="540" y="728" width="88" height="42" rx="9" fill="#f3f0fd"/>
+  <text x="584" y="756" text-anchor="middle" fill="#6c5ce7" font-family="ui-monospace, Menlo, monospace" font-size="23" font-weight="700">class</text>
+  <text x="650" y="766" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="30" font-weight="700">Cylinder</text>
+  <text x="720" y="796" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21">하나의 선언 · 두 명부에 등록</text>
+
+  <!-- Full-width callout -->
+  <rect x="50" y="862" width="1340" height="112" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <circle cx="104" cy="918" r="24" fill="#6c5ce7"/>
+  <text x="104" y="927" text-anchor="middle" fill="#ffffff" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="28" font-weight="750">!</text>
+  <text x="148" y="927" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="26" font-weight="650">같은 글자라도 공간이 다르면 다른 존재다 — 하나의 선언으로 양쪽에 등록되는 건 class와 enum</text>
+</svg>
