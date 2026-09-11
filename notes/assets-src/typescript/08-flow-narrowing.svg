@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1040" viewBox="0 0 1480 1040" role="img" aria-labelledby="title desc">
+  <title id="title">제어 흐름을 따라 타입이 좁혀지는 과정</title>
+  <desc id="desc">세 개의 코드 라인을 따라 elem의 타입이 HTMLElement 또는 null에서 HTMLElement로 좁혀지는 흐름을 설명하는 다이어그램</desc>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M 1 1 L 11 6 L 1 11 Z" fill="#6b7280"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M 1 1 L 11 6 L 1 11 Z" fill="#e74c3c"/>
+    </marker>
+    <filter id="soft-shadow" x="-10%" y="-20%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1c1f26" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="1480" height="1040" fill="#f4f5f7"/>
+
+  <!-- Heading -->
+  <text x="80" y="78" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="35" font-weight="700">제어 흐름이 타입을 좁힌다</text>
+  <text x="80" y="124" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24">같은 변수도 코드의 위치에 따라 가능한 타입의 집합이 달라진다</text>
+
+  <!-- Step 1 -->
+  <rect x="80" y="180" width="860" height="150" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2" filter="url(#soft-shadow)"/>
+  <circle cx="126" cy="222" r="20" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="126" y="230" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">1</text>
+  <text x="160" y="230" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="600">값을 가져온 직후</text>
+  <text x="120" y="286" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="25">const elem = document.getElementById(...)</text>
+
+  <text x="990" y="212" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="600">가능한 타입</text>
+  <rect x="990" y="230" width="380" height="64" rx="32" fill="#ffffff" stroke="#6c5ce7" stroke-width="3"/>
+  <circle cx="1027" cy="262" r="8" fill="#6c5ce7"/>
+  <text x="1050" y="271" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="25" font-weight="600">HTMLElement | null</text>
+
+  <!-- Main-flow arrow 1 -->
+  <line x1="510" y1="342" x2="510" y2="397" stroke="#6b7280" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-gray)"/>
+
+  <!-- Step 2 -->
+  <rect x="80" y="410" width="860" height="160" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2" filter="url(#soft-shadow)"/>
+  <circle cx="126" cy="452" r="20" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="126" y="460" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">2</text>
+  <text x="160" y="460" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="600">null 경로를 차단</text>
+  <text x="120" y="520" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="25">if (!elem) throw new Error(...)</text>
+
+  <!-- Terminating branch -->
+  <line x1="940" y1="490" x2="1027" y2="490" stroke="#e74c3c" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-red)"/>
+  <rect x="1045" y="454" width="355" height="72" rx="36" fill="#ffffff" stroke="#e74c3c" stroke-width="3"/>
+  <circle cx="1083" cy="490" r="9" fill="#e74c3c"/>
+  <text x="1107" y="499" fill="#e74c3c" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="700">null → throw로 흐름 종료</text>
+
+  <!-- Main-flow arrow 2 -->
+  <line x1="510" y1="582" x2="510" y2="637" stroke="#6b7280" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-gray)"/>
+  <rect x="537" y="594" width="164" height="34" rx="17" fill="#e8eaee"/>
+  <text x="619" y="618" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="19" font-weight="600">계속 실행되는 경로</text>
+
+  <!-- Step 3 -->
+  <rect x="80" y="650" width="860" height="150" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2" filter="url(#soft-shadow)"/>
+  <circle cx="126" cy="692" r="20" fill="#eaf7ef" stroke="#27ae60" stroke-width="2"/>
+  <text x="126" y="700" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">3</text>
+  <text x="160" y="700" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" font-weight="600">검사를 통과한 뒤</text>
+  <text x="120" y="756" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="25">elem.innerHTML = &quot;Party Time&quot;</text>
+
+  <text x="990" y="674" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="600">가능한 타입</text>
+  <rect x="990" y="692" width="245" height="64" rx="32" fill="#ffffff" stroke="#27ae60" stroke-width="3"/>
+  <circle cx="1027" cy="724" r="8" fill="#27ae60"/>
+  <text x="1050" y="733" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="25" font-weight="600">HTMLElement</text>
+  <circle cx="1270" cy="724" r="16" fill="#27ae60"/>
+  <path d="M1262 724 L1268 730 L1279 717" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1297" y="733" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">null이 제거됐다</text>
+
+  <!-- Bottom callout -->
+  <rect x="80" y="850" width="1320" height="138" rx="12" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <rect x="80" y="850" width="10" height="138" rx="5" fill="#6c5ce7"/>
+  <circle cx="137" cy="919" r="28" fill="#6c5ce7"/>
+  <path d="M137 903 V921 M137 935 V936" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+  <text x="190" y="909" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="26" font-weight="700">타입은 선언에 박제되지 않는다 —</text>
+  <text x="190" y="951" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="26">제어 흐름의 지점마다 가능한 값의 집합으로 다시 계산된다</text>
+</svg>
