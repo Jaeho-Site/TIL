@@ -46,3 +46,17 @@ function contains(text: string, terms: string | string[]) {
   //    ^? const termList: string[]
 }
 ```
+
+## 그럼 !x는 왜 실패했나
+
+집합의 관점으로 돌아가면 도입 퀴즈가 풀린다. `!x`가 참이 되는 값의 집합은 뭘까? `null`과 `undefined`만이 아니다. **`0`도 `''`도 falsy다.** 즉 `!x` 분기 안에서 가능한 값은 `null`, `undefined`, `0`(그리고 `NaN`), `''` — 타입으로 표현하면 여전히 `string | number | null | undefined` 전부다. 컴파일러는 게으른 게 아니라 정확했고, 틀린 건 "falsy = 값 없음"이라는 내 어림짐작이었다.
+
+`typeof`에도 비슷한 함정이 있다. 자바스크립트에서 `typeof null`은 역사적인 이유로 `'object'`라서, 객체를 거르려고 `typeof x === 'object'`를 쓰면 `null`이 **같이 살아남는다**. 타입 체커는 이 기괴한 사양까지 그대로 모델링한다.
+
+```typescript
+const elem = document.getElementById('what-time-is-it');
+if (typeof elem === 'object') {
+  elem;
+  // ^? const elem: HTMLElement | null — null이 안 걸러졌다
+}
+```
