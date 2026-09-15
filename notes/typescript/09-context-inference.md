@@ -42,3 +42,47 @@ panTo(loc);
 ```
 
 `const`인데도 실패한다. 배열 리터럴은 문맥이 없으면 애초에 튜플이 아니라 `number[]`로 추론되기 때문이다 — 길이 정보는 처음부터 기록되지 않는다. `as const`를 붙이면 이번엔 `readonly [10, 20]`이 돼서 mutable 튜플 자리에 못 들어간다 — 받는 쪽 시그니처를 `readonly [number, number]`로 고치는 게 제일 깔끔했다. 개인적으로 이 사례에서 배운 건, 문맥에서 떼어낸 값이 만드는 에러는 **선언 지점이 아니라 사용 지점에서 터진다**는 점이다. 에러가 난 줄이 아니라 몇 줄 위의 선언이 진범인 경우가 많다.
+
+## 콜백의 매개변수 타입은 어디서 오는가
+
+문맥 추론이 제일 빛나는 곳은 콜백이다. 이 코드에서 `a`와 `b`의 타입은 어디서 왔을까.
+
+```typescript
+function callWithRandomNumbers(fn: (n1: number, n2: number) => void) {
+  fn(Math.random(), Math.random());
+}
+
+callWithRandomNumbers((a, b) => {
+  //                   ^? (parameter) a: number
+  console.log(a + b);
+});
+```
+
+주석을 안 달았는데 `a`, `b`가 `number`다. 콜백이 `fn` 매개변수 자리에 인라인으로 놓여 있으니, 그 자리의 함수 타입 `(n1: number, n2: number) => void`에서 매개변수 타입이 **역방향으로 흘러들어온** 것이다. 그리고 예상대로, 콜백을 변수로 빼면 문맥이 끊기면서 이 흐름도 끊긴다.
+
+```typescript
+const fn = (a, b) => {
+  //        ~    Parameter 'a' implicitly has an 'any' type
+  console.log(a + b);
+};
+callWithRandomNumbers(fn);
+```
+
+## 함수를 변수로 뺄 거라면 — 타입은 통째로
+
+그럼 함수를 변수로 빼는 건 늘 손해일까. 매개변수마다 주석을 다는 방법도 있지만, 더 나은 습관을 책에서 배웠다. **함수 표현식 전체에 타입을 붙이는 것**이다.
+
+```typescript
+type BinaryFn = (a: number, b: number) => number;
+
+const add: BinaryFn = (a, b) => a + b;
+const sub: BinaryFn = (a, b) => a - b;
+const mul: BinaryFn = (a, b) => a * b;
+const div: BinaryFn = (a, b) => a / b;
+```
+
+`: BinaryFn`이라는 문맥을 변수 선언에 직접 만들어줬으니, 매개변수 타입은 다시 흘러들어오고 반환 타입 검사까지 공짜로 받는다. 시그니처를 네 번 반복해서 쓰는 것보다 의도도 명확하다. 라이브러리들이 `MouseEventHandler` 같은 콜백 타입을 통째로 제공하는 이유이기도 하다 — React에서 `onClick`에 인라인 화살표 함수를 쓸 때 `e`의 타입을 한 번도 안 적고 지나갈 수 있는 게 바로 이 문맥 추론 덕분이다.
+
+---
+
+타입 추론에는 값에서 위로 올라가는 방향만 있는 게 아니라, **자리의 기대 타입에서 값으로 내려오는 방향**이 있고, 변수 추출은 그 통로를 끊는 일이다. 리팩터링 후 갑자기 나타난 타입 에러는 코드가 틀려진 게 아니라 문맥이 사라졌다는 신호였다 — 그럴 땐 주석·`const`·함수 타입으로 문맥을 다시 이어주면 된다.
