@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="1040" viewBox="0 0 1460 1040" role="img" aria-labelledby="title desc">
+  <title id="title">TypeScript 할당 가능성 사다리</title>
+  <desc id="desc">unknown에서 never까지 집합 크기에 따른 할당 가능 방향과, 집합 규칙 밖에서 움직이는 any의 예외적 위치를 설명하는 다이어그램</desc>
+
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#1c1f26" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e74c3c"/>
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <rect width="1460" height="1040" fill="#f4f5f7"/>
+
+  <!-- Header -->
+  <text x="70" y="64" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="34" font-weight="700">TypeScript 할당 가능성 사다리</text>
+  <text x="70" y="104" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24">타입을 값의 집합으로 보면, 할당 방향이 선명해진다</text>
+  <line x1="70" y1="132" x2="1390" y2="132" stroke="#d0d4dc" stroke-width="2"/>
+
+  <!-- Left direction label -->
+  <rect x="56" y="167" width="208" height="75" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  <circle cx="82" cy="193" r="7" fill="#27ae60"/>
+  <text x="99" y="201" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">할당 가능 방향</text>
+  <text x="82" y="229" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="19" font-weight="700">작은 집합 → 큰 집합</text>
+
+  <!-- Upward assignability arrow -->
+  <line x1="166" y1="785" x2="166" y2="268" stroke="#27ae60" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+
+  <!-- Ladder spine -->
+  <line x1="314" y1="272" x2="314" y2="776" stroke="#d0d4dc" stroke-width="6" stroke-linecap="round"/>
+  <line x1="314" y1="274" x2="344" y2="274" stroke="#d0d4dc" stroke-width="6" stroke-linecap="round"/>
+  <line x1="314" y1="440" x2="344" y2="440" stroke="#d0d4dc" stroke-width="6" stroke-linecap="round"/>
+  <line x1="314" y1="606" x2="344" y2="606" stroke="#d0d4dc" stroke-width="6" stroke-linecap="round"/>
+  <line x1="314" y1="772" x2="344" y2="772" stroke="#d0d4dc" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Ladder cards -->
+  <g filter="url(#shadow)">
+    <rect x="344" y="214" width="510" height="120" rx="12" fill="#ffffff" stroke="#6c5ce7" stroke-width="3"/>
+    <rect x="344" y="380" width="510" height="120" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    <rect x="344" y="546" width="510" height="120" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    <rect x="344" y="712" width="510" height="120" rx="12" fill="#ffffff" stroke="#6c5ce7" stroke-width="3"/>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, monospace" font-size="30" font-weight="700" fill="#6c5ce7">
+    <text x="378" y="265">unknown</text>
+    <text x="378" y="431" fill="#1c1f26">string</text>
+    <text x="378" y="597" fill="#1c1f26">'hello'</text>
+    <text x="378" y="763">never</text>
+  </g>
+  <g font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="23" fill="#6b7280">
+    <text x="378" y="304">전체집합 (모든 값)</text>
+    <text x="378" y="470">무한 집합</text>
+    <text x="378" y="636">원소 하나</text>
+    <text x="378" y="802">공집합 (원소 없음)</text>
+  </g>
+  <g font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700" text-anchor="end">
+    <text x="828" y="262" fill="#6c5ce7">가장 넓음</text>
+    <text x="828" y="760" fill="#6c5ce7">가장 좁음</text>
+  </g>
+
+  <!-- Reverse direction arrow -->
+  <line x1="925" y1="265" x2="925" y2="777" stroke="#e74c3c" stroke-width="5" stroke-dasharray="12 12" stroke-linecap="round" marker-end="url(#arrow-red)"/>
+  <text x="940" y="862" text-anchor="end" fill="#e74c3c" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">역방향은 에러 — 좁히기(검사)가 필요하다</text>
+
+  <!-- any exception card -->
+  <g filter="url(#shadow)">
+    <rect x="1050" y="254" width="340" height="226" rx="12" fill="#ffffff" stroke="#e74c3c" stroke-width="3"/>
+  </g>
+  <rect x="1082" y="282" width="82" height="42" rx="21" fill="#e74c3c"/>
+  <text x="1123" y="311" text-anchor="middle" fill="#ffffff" font-family="ui-monospace, Menlo, monospace" font-size="25" font-weight="700">any</text>
+  <text x="1082" y="364" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24" font-weight="700">집합 규칙 밖</text>
+  <text x="1082" y="398" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22">검사 스위치 오프</text>
+  <line x1="1082" y1="425" x2="1358" y2="425" stroke="#d0d4dc" stroke-width="2"/>
+  <text x="1082" y="456" fill="#e74c3c" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">타입 안전성의 우회로</text>
+
+  <!-- any bidirectional passage -->
+  <line x1="862" y1="335" x2="1038" y2="335" stroke="#6b7280" stroke-width="4" marker-start="url(#arrow-gray)" marker-end="url(#arrow-gray)"/>
+  <rect x="875" y="296" width="151" height="30" rx="15" fill="#f4f5f7"/>
+  <text x="950" y="318" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="19" font-weight="700">어디로든 통과</text>
+
+  <!-- Attempt from any into never: blocked -->
+  <path d="M 1218 490 C 1218 630, 1080 772, 876 772" fill="none" stroke="#6b7280" stroke-width="4" stroke-dasharray="9 9" marker-end="url(#arrow-gray)"/>
+  <circle cx="1007" cy="706" r="23" fill="#ffffff" stroke="#e74c3c" stroke-width="3"/>
+  <path d="M 996 695 L 1018 717 M 1018 695 L 996 717" fill="none" stroke="#e74c3c" stroke-width="5" stroke-linecap="round"/>
+  <rect x="1044" y="658" width="324" height="74" rx="12" fill="#ffffff" stroke="#e74c3c" stroke-width="2"/>
+  <text x="1067" y="688" fill="#e74c3c" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">유일한 예외</text>
+  <text x="1067" y="716" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20">never에는 못 들어간다</text>
+
+  <!-- Full-width callout -->
+  <rect x="70" y="895" width="1320" height="105" rx="12" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <circle cx="112" cy="947" r="18" fill="#6c5ce7"/>
+  <text x="112" y="955" text-anchor="middle" fill="#ffffff" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24" font-weight="700">!</text>
+  <text x="151" y="956" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="26" font-weight="700">할당 검사는 부분집합 판정이다 — any만 그 규칙 바깥에서 움직인다</text>
+</svg>
