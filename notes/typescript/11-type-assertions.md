@@ -57,3 +57,39 @@ const el = document.getElementById('foo')!;
 ```
 
 단언은 단언이다. 근거 없이 쓰면 `null.addEventListener`가 런타임에 터진다. 확신이 없다면 `?.`나 if 체크로 [좁히는](/typescript/08-narrowing) 게 맞고, 확신이 있다면 **왜 확신하는지 주석으로 근거를 남기는** 게 책의 조언이다. 미래의 내가 그 HTML을 바꿀 수도 있으니까.
+
+## 단언을 쓰되, 새어 나가지 않게
+
+단언이 불가피할 때도 요령이 있다. 핵심은 **오염 범위를 최소로** 잡는 것이다.
+
+```typescript
+function eatDinner1() {
+  const pizza: any = getPizza(); // 이러지 말 것
+  eatSalad(pizza);               // 통과 (의도)
+  pizza.slice();                 // 이 호출도 검사망 밖 (의도 아님!)
+}
+
+function eatDinner2() {
+  const pizza = getPizza();
+  eatSalad(pizza as any);        // 이 인자 하나만 끈다
+  pizza.slice();                 // 여전히 검사받는다
+}
+```
+
+변수 전체에 `any`를 붙이면 그 변수의 남은 생애 전부가 검사망을 벗어난다. 표현식 하나에만 붙이면 오염이 그 자리에서 끝난다.
+
+한 단계 더 나아간 패턴이 **잘 타입된 함수 안에 단언을 숨기는** 것이다. 예를 들어 API 응답을 가져오는 함수에서 `unknown`을 도메인 타입으로 바꿔야 한다면, 단언을 호출부마다 흩뿌리지 않고 시그니처가 정확한 함수 하나에 가둔다.
+
+```typescript
+async function fetchPeak(peakId: string): Promise<MountainPeak> {
+  return checkedFetchJSON(
+    `/api/mountain-peaks/${peakId}`
+  ) as Promise<MountainPeak>; // 단언은 이 한 곳뿐
+}
+```
+
+바깥에서 보면 `fetchPeak`은 완전히 타입 안전한 함수다. 위험한 가정("이 API는 MountainPeak을 준다")은 한 곳에 모여 있고, 주석과 테스트로 그 한 곳만 지키면 된다. 사실 [두 번째 글](/typescript/02-runtime-types)에서 본 Zod 같은 런타임 검증이 더 안전한 정답이지만, 검증 비용을 쓰지 않기로 **선택**했다면 최소한 이렇게 가둬야 한다.
+
+---
+
+`as`는 컴파일러와 나 사이의 책임 이전 계약이다 — **컴파일러가 알 수 없는 사실을 내가 보증하는 문서**고, 보증인이 됐으면 근거(주석)와 담보(좁은 범위, 테스트)를 남겨야 한다. 그런데 단언을 한 번도 안 썼는데도 타입과 런타임이 어긋나는 경우가 있다는 게 더 찜찜했다. 첫 글의 `names[2]`가 그랬다. → [타입 체크를 통과했는데 왜 런타임 에러가 나는가](/typescript/12-unsoundness)
