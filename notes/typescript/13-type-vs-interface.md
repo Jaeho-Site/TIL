@@ -54,3 +54,15 @@ class StateT implements TState {
 ```
 
 그래서 "객체 타입 하나 정의한다"의 관점에서는 정말 아무거나 써도 된다. 차이는 가장자리에 있다.
+
+## type만 할 수 있는 것 — 타입 연산
+
+`interface`는 이름 그대로 객체의 형태 서술이 전부다. 반면 `type`은 **임의의 타입에 이름을 붙이는** 도구라서, [값의 집합](/typescript/05-types-as-sets)에 대한 연산 결과도 담을 수 있다.
+
+```typescript
+type AorB = 'a' | 'b';                    // 유니온
+type Pair = [a: number, b: number];       // 이름 붙은 튜플
+type NamedNums = [string, ...number[]];   // 가변 튜플
+```
+
+유니온 타입, 튜플(엄밀히는 `{ 0: number; 1: number; length: 2 }`식 흉내는 가능하지만 튜플 문법과 기능을 잃는다), 그리고 나중에 다룰 매핑·조건부 타입은 `interface`로 표현할 수 없다. 타입 설계가 유니온 중심으로 갈수록(다음 글이 정확히 그 이야기다) `type`이 자주 나오는 이유다.
