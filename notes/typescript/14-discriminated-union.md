@@ -62,3 +62,24 @@ function renderPage(requestState: RequestState, currentPage: string) {
 ```
 
 우선순위 규칙도, 방어적 undefined 체크도 사라졌다. 무효 상태를 코드에서 처리하는 게 아니라 **타입 설계 단계에서 소멸**시킨 것이다.
+
+
+## 유니온을 어디에 두느냐가 설계다
+
+같은 원리를 다른 각도에서 보여주는 사례가 "유니온을 품은 인터페이스"다.
+
+```typescript
+// 나쁜 쪽: 인터페이스 안에 유니온
+interface Layer {
+  layout: FillLayout | LineLayout | PointLayout;
+  paint: FillPaint | LinePaint | PointPaint;
+}
+
+// 좋은 쪽: 인터페이스들의 유니온
+interface FillLayer { type: 'fill'; layout: FillLayout; paint: FillPaint; }
+interface LineLayer { type: 'line'; layout: LineLayout; paint: LinePaint; }
+interface PointLayer { type: 'point'; layout: PointLayout; paint: PointPaint; }
+type Layer = FillLayer | LineLayer | PointLayer;
+```
+
+위쪽 설계에서는 `FillLayout`에 `LinePaint`를 조합한 잡종 레이어가 유효하다. 속성 사이에 "짝이 맞아야 한다"는 관계가 있는데 타입이 그걸 말하지 못하는 것이다. 아래쪽은 짝이 인터페이스 단위로 묶여 있어 잡종이 원천 봉쇄되고, `type` 태그 하나로 좁히기까지 얻는다. 유효한 조합의 [집합](/typescript/05-types-as-sets)만 정확히 담는 타입이 곧 좋은 타입이다.
