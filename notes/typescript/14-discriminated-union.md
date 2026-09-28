@@ -63,6 +63,7 @@ function renderPage(requestState: RequestState, currentPage: string) {
 
 우선순위 규칙도, 방어적 undefined 체크도 사라졌다. 무효 상태를 코드에서 처리하는 게 아니라 **타입 설계 단계에서 소멸**시킨 것이다.
 
+![isLoading과 error 속성 조합이 만드는 2x2 상태 공간에는 로딩 중이면서 에러인 무효 칸이 타입상 유효하게 존재하지만, 태그된 유니온 설계에서는 유효한 상태 세 개만 표현 가능한 비교](/images/typescript/14-state-space.png)
 
 ## 유니온을 어디에 두느냐가 설계다
 
@@ -83,3 +84,42 @@ type Layer = FillLayer | LineLayer | PointLayer;
 ```
 
 위쪽 설계에서는 `FillLayout`에 `LinePaint`를 조합한 잡종 레이어가 유효하다. 속성 사이에 "짝이 맞아야 한다"는 관계가 있는데 타입이 그걸 말하지 못하는 것이다. 아래쪽은 짝이 인터페이스 단위로 묶여 있어 잡종이 원천 봉쇄되고, `type` 태그 하나로 좁히기까지 얻는다. 유효한 조합의 [집합](/typescript/05-types-as-sets)만 정확히 담는 타입이 곧 좋은 타입이다.
+
+## 빠뜨린 케이스는 never가 잡는다
+
+태그된 유니온의 마지막 조각은 [any 글](/typescript/10-any-unknown-never)에서 예고했던 `never`의 쓸모다. 상태가 셋일 때 switch가 셋을 다 처리했는지, 컴파일러에게 감시를 맡길 수 있다.
+
+```typescript
+function assertUnreachable(value: never): never {
+  throw new Error(`Missed a case! ${value}`);
+}
+
+function area(shape: Shape) { // Shape = Box | Circle | Line
+  switch (shape.type) {
+    case 'box': return shape.size[0] * shape.size[1];
+    case 'circle': return Math.PI * shape.radius ** 2;
+    default:
+      return assertUnreachable(shape);
+      //                       ~~~~~
+      // Argument of type 'Line' is not assignable to parameter of type 'never'.
+  }
+}
+```
+
+모든 케이스를 처리했다면 `default`에 도달할 값은 없고, 좁히기 끝의 `shape`는 공집합 `never`가 되어 조용히 통과한다. `Line` 케이스를 빠뜨린 지금은 `default`의 `shape`가 `Line`으로 남고, `never` 매개변수에 들어갈 수 없어 에러가 난다. 에러 메시지가 **어떤 케이스를 빠뜨렸는지 이름까지 알려주는** 게 백미다. 나중에 누가 유니온에 상태를 추가하면, 그 순간 관련된 모든 switch가 컴파일 에러로 "나 여기 수정해야 해요"라고 손을 든다.
+
+## React에서 매일 하는 실수이기도 하다
+
+사실 도입의 `State`는 React 컴포넌트에서 흔히 보는 모양 그대로다.
+
+```typescript
+const [data, setData] = useState<Page | null>(null);
+const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState<string | null>(null);
+```
+
+`useState` 세 개는 곧 "유니온을 품은 인터페이스"와 같은 설계다 — `isLoading && error`가 동시에 참인 순간이 얼마든지 생긴다(에러 후 `setIsLoading(false)`를 깜빡하는 게 단골). 상태 하나로 합쳐 태그된 유니온을 담거나, 이 패턴을 제대로 구현해둔 라이브러리(React Query의 `status`가 정확히 태그다)를 쓰는 게 같은 원리의 실무 버전이다.
+
+---
+
+좋은 타입 설계란 표현력을 늘리는 게 아니라 **유효한 상태의 집합과 타입이 표현하는 집합을 일치시키는 것**이고, 태그된 유니온은 그 일치를 만드는 가장 실용적인 도구다. 그런데 무효 상태의 단골 원인이 하나 남아 있다 — 어디에나 스며드는 `null`이다. → [null은 타입의 어디에 둬야 하나](/typescript/15-null-handling)
