@@ -38,3 +38,14 @@ type OptionsKeys = keyof Options;
 ```
 
 `keyof T`는 타입의 키들을 리터럴 유니온으로 준다. [값 공간의 `Object.keys`에 대응하는 타입 공간의 연산](/typescript/06-type-value-space)인 셈이다.
+
+## 부품 2 — 인덱스 접근: 타입에서 속성 타입을 꺼낸다
+
+```typescript
+type WidthType = Options['width'];  // number
+
+type Action = { type: 'save' } | { type: 'load' };
+type ActionType = Action['type'];   // 'save' | 'load' — 유니온에도 동작
+```
+
+값 공간의 `obj['width']`와 똑같이 생겼지만 대괄호 안에 들어가는 게 **타입**이다(`'width'`는 리터럴 타입). 유니온을 넣으면 각 멤버의 속성 타입이 유니온으로 나온다.
