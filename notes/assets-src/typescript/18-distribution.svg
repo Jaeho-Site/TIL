@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1080" viewBox="0 0 1440 1080" role="img" aria-labelledby="title desc">
+  <title id="title">조건부 타입의 유니온 분배 과정</title>
+  <desc id="desc">string과 number 유니온이 조건부 타입에서 멤버별로 갈라져 각각 평가된 뒤 다시 유니온으로 합쳐지는 세로 흐름 다이어그램</desc>
+
+  <defs>
+    <filter id="card-shadow" x="-12%" y="-18%" width="124%" height="145%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1c1f26" flood-opacity="0.07"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 1 1 L 11 6 L 1 11 Z" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1440" height="1080" fill="#f4f5f7"/>
+
+  <!-- Input conditional type -->
+  <g filter="url(#card-shadow)">
+    <rect x="310" y="50" width="820" height="136" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+  <text x="720" y="104" text-anchor="middle" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="34" font-weight="700">double(x: string | number)</text>
+  <text x="720" y="151" text-anchor="middle" fill="#6b7280" font-family="ui-monospace, Menlo, monospace" font-size="25">T extends string ? string : number</text>
+
+  <!-- Split label -->
+  <path d="M 720 186 L 720 217" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+  <rect x="438" y="217" width="564" height="52" rx="12" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="1.5"/>
+  <circle cx="473" cy="243" r="7" fill="#6c5ce7"/>
+  <text x="720" y="251" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24" font-weight="700">유니온이 멤버별로 갈라진다 (분배)</text>
+
+  <!-- Branch arrows -->
+  <path d="M 720 269 L 720 286 L 400 286 L 400 321" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrowhead)"/>
+  <path d="M 720 269 L 720 286 L 1040 286 L 1040 321" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrowhead)"/>
+
+  <!-- Per-member checks -->
+  <g filter="url(#card-shadow)">
+    <rect x="140" y="330" width="520" height="94" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+    <rect x="780" y="330" width="520" height="94" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  </g>
+  <text x="400" y="386" text-anchor="middle" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="27" font-weight="650">string extends string ?</text>
+  <text x="1040" y="386" text-anchor="middle" fill="#1c1f26" font-family="ui-monospace, Menlo, monospace" font-size="27" font-weight="650">number extends string ?</text>
+
+  <!-- Evaluation arrows -->
+  <path d="M 400 424 L 400 475" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+  <path d="M 1040 424 L 1040 475" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+
+  <!-- Per-member results -->
+  <g filter="url(#card-shadow)">
+    <rect x="230" y="484" width="340" height="88" rx="12" fill="#ffffff" stroke="#27ae60" stroke-width="3"/>
+    <rect x="870" y="484" width="340" height="88" rx="12" fill="#ffffff" stroke="#27ae60" stroke-width="3"/>
+  </g>
+  <text x="400" y="539" text-anchor="middle" fill="#27ae60" font-family="ui-monospace, Menlo, monospace" font-size="32" font-weight="750">string</text>
+  <text x="1040" y="539" text-anchor="middle" fill="#27ae60" font-family="ui-monospace, Menlo, monospace" font-size="32" font-weight="750">number</text>
+
+  <!-- Merge paths -->
+  <path d="M 400 572 L 400 604 L 704 653" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrowhead)"/>
+  <path d="M 1040 572 L 1040 604 L 736 653" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrowhead)"/>
+  <circle cx="720" cy="660" r="7" fill="#6c5ce7"/>
+
+  <!-- Recombine label and final arrow -->
+  <rect x="491" y="682" width="458" height="48" rx="12" fill="#f3f0fd"/>
+  <text x="720" y="714" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24" font-weight="700">결과를 다시 유니온으로 합친다</text>
+  <path d="M 720 667 L 720 682 M 720 730 L 720 765" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+
+  <!-- Final union -->
+  <g filter="url(#card-shadow)">
+    <rect x="420" y="774" width="600" height="96" rx="12" fill="#ffffff" stroke="#6c5ce7" stroke-width="3"/>
+  </g>
+  <text x="720" y="834" text-anchor="middle" fill="#6c5ce7" font-family="ui-monospace, Menlo, monospace" font-size="34" font-weight="750">string | number</text>
+
+  <!-- Bottom callout -->
+  <rect x="50" y="918" width="1340" height="118" rx="12" fill="#f3f0fd" stroke="#ded8f7" stroke-width="1.5"/>
+  <circle cx="104" cy="977" r="24" fill="#6c5ce7"/>
+  <text x="104" y="986" text-anchor="middle" fill="#ffffff" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="27" font-weight="800">!</text>
+  <text x="150" y="987" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="26" font-weight="650">조건을 통째로 평가하지 않는다 — 멤버마다 조건을 적용한 뒤 합친다. 분배를 끄려면 [T] extends [U]</text>
+</svg>
