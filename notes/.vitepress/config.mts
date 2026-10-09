@@ -35,6 +35,7 @@ export default defineConfig({
         text: 'Frontend',
         items: [
           { text: 'JavaScript', link: '/javascript/' },
+          { text: 'TypeScript', link: '/typescript/' },
           { text: 'Browser', link: '/browser/' }
         ]
       },
@@ -118,6 +119,66 @@ export default defineConfig({
             { text: 'for...of와 for...in은 뭐가 다른가', link: '/javascript/21-iterable' },
             { text: 'ESM과 CJS는 뭐가 다른가', link: '/javascript/22-esm-vs-cjs' },
             { text: '번들러는 왜 여전히 쓰나', link: '/javascript/23-bundler-babel' }
+          ]
+        }
+      ],
+      '/typescript/': [
+        {
+          text: 'TypeScript',
+          items: [{ text: '소개', link: '/typescript/' }]
+        },
+        {
+          text: '타입스크립트라는 언어',
+          collapsed: false,
+          items: [
+            { text: '타입 에러가 있는데 왜 컴파일은 되는가', link: '/typescript/01-ts-js-relationship' },
+            { text: '런타임에 타입은 어떻게 확인하나', link: '/typescript/02-runtime-types' }
+          ]
+        },
+        {
+          text: '구조적 타입 시스템',
+          collapsed: false,
+          items: [
+            { text: '선언한 적 없는 타입인데 왜 할당이 되는가', link: '/typescript/03-structural-typing' },
+            { text: '객체 리터럴만 더 엄격하게 검사되는 이유', link: '/typescript/04-excess-property-checking' },
+            { text: '타입은 값의 집합이다', link: '/typescript/05-types-as-sets' },
+            { text: '같은 이름이 타입도 되고 값도 된다', link: '/typescript/06-type-value-space' }
+          ]
+        },
+        {
+          text: '타입 추론',
+          collapsed: false,
+          items: [
+            { text: "let은 string인데 const는 왜 'x'인가", link: '/typescript/07-widening' },
+            { text: '타입스크립트는 코드 흐름을 읽는다', link: '/typescript/08-narrowing' },
+            { text: '인라인은 되는데 변수로 빼면 왜 에러인가', link: '/typescript/09-context-inference' }
+          ]
+        },
+        {
+          text: 'any와 타입 안전성',
+          collapsed: false,
+          items: [
+            { text: 'any 대신 unknown을 쓰라는 이유', link: '/typescript/10-any-unknown-never' },
+            { text: 'as는 언제 써야 하는가', link: '/typescript/11-type-assertions' },
+            { text: '타입 체크를 통과했는데 왜 런타임 에러가 나는가', link: '/typescript/12-unsoundness' }
+          ]
+        },
+        {
+          text: '타입 설계',
+          collapsed: false,
+          items: [
+            { text: 'type과 interface, 뭘 써야 하나', link: '/typescript/13-type-vs-interface' },
+            { text: '잘못된 상태를 표현할 수 없게 만들기', link: '/typescript/14-discriminated-union' },
+            { text: 'null은 타입의 어디에 둬야 하나', link: '/typescript/15-null-handling' }
+          ]
+        },
+        {
+          text: '제네릭과 타입 연산',
+          collapsed: false,
+          items: [
+            { text: '제네릭은 타입의 함수다', link: '/typescript/16-generics-as-functions' },
+            { text: 'Partial은 어떻게 만들어지는가', link: '/typescript/17-mapped-utility-types' },
+            { text: '타입에도 조건문이 있다', link: '/typescript/18-conditional-types' }
           ]
         }
       ],
