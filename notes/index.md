@@ -19,6 +19,10 @@ features:
     details: 언어 동작 원리를 질문을 따라가며 정리한 공부 기록.
     link: /javascript/
     linkText: 바로가기
+  - title: TypeScript
+    details: 타입 시스템의 동작 원리를 질문을 따라가며 정리한 공부 기록.
+    link: /typescript/
+    linkText: 바로가기
   - title: Browser
     details: 렌더링 파이프라인과 이벤트 시스템의 동작 원리.
     link: /browser/
