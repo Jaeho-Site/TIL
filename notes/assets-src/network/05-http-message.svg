@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1040" viewBox="0 0 1480 1040" role="img" aria-labelledby="title desc">
+  <title id="title">HTTP 메시지 — 시작 줄, 헤더, 빈 줄, 본문</title>
+  <desc id="desc">HTTP 요청과 응답 메시지를 시작 줄, 헤더, 빈 줄, 본문의 네 구역으로 나누어 비교한 해부도</desc>
+
+  <rect x="0" y="0" width="1480" height="1040" fill="#f4f5f7"/>
+
+  <text x="70" y="78" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="700">HTTP 메시지 — 시작 줄, 헤더, 빈 줄, 본문</text>
+  <text x="70" y="113" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">요청과 응답을 이루는 네 개의 공통 구역</text>
+
+  <!-- 요청 카드 -->
+  <rect x="70" y="150" width="650" height="720" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="102" y="198" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24" font-weight="700">요청 (Request)</text>
+  <line x1="70" y1="222" x2="720" y2="222" stroke="#d0d4dc" stroke-width="1.5"/>
+
+  <!-- 요청: 시작 줄 -->
+  <path d="M70 222 H720 V378 H70 Z" fill="#f3f0fd"/>
+  <rect x="70" y="222" width="112" height="156" fill="#f3f0fd"/>
+  <line x1="182" y1="222" x2="182" y2="378" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="126" y="300" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700" writing-mode="vertical-rl">시작 줄</text>
+  <text x="214" y="285" fill="#1c1f26" font-family="SF Mono, Menlo, monospace" font-size="21" font-weight="600">POST /api/posts HTTP/1.1</text>
+  <text x="214" y="326" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">메서드 · 경로 · 버전</text>
+
+  <!-- 요청: 헤더 -->
+  <rect x="70" y="378" width="650" height="246" fill="#ffffff"/>
+  <line x1="182" y1="378" x2="182" y2="624" stroke="#d0d4dc" stroke-width="1.5"/>
+  <line x1="70" y1="378" x2="720" y2="378" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="126" y="501" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700" writing-mode="vertical-rl">헤더</text>
+  <text x="214" y="447" fill="#1c1f26" font-family="SF Mono, Menlo, monospace" font-size="19">Host: ezilog.dev</text>
+  <text x="214" y="500" fill="#1c1f26" font-family="SF Mono, Menlo, monospace" font-size="19">Content-Type: application/json</text>
+  <text x="214" y="553" fill="#1c1f26" font-family="SF Mono, Menlo, monospace" font-size="19">Cookie: sessionId=abc123</text>
+
+  <!-- 요청: 빈 줄 -->
+  <rect x="70" y="624" width="650" height="76" fill="#f4f5f7"/>
+  <line x1="70" y1="624" x2="720" y2="624" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="395" y="671" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">(빈 줄)</text>
+
+  <!-- 요청: 본문 -->
+  <path d="M70 700 H720 V858 Q720 870 708 870 H82 Q70 870 70 858 Z" fill="#eaf7ef"/>
+  <line x1="70" y1="700" x2="720" y2="700" stroke="#d0d4dc" stroke-width="1.5"/>
+  <line x1="182" y1="700" x2="182" y2="870" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="126" y="785" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700" writing-mode="vertical-rl">본문</text>
+  <text x="214" y="794" fill="#1c1f26" font-family="SF Mono, Menlo, monospace" font-size="20">{ "title": "새 글" }</text>
+
+  <!-- 응답 카드 -->
+  <rect x="760" y="150" width="650" height="720" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="792" y="198" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24" font-weight="700">응답 (Response)</text>
+  <line x1="760" y1="222" x2="1410" y2="222" stroke="#d0d4dc" stroke-width="1.5"/>
+
+  <!-- 응답: 시작 줄 -->
+  <path d="M760 222 H1410 V378 H760 Z" fill="#f3f0fd"/>
+  <rect x="760" y="222" width="112" height="156" fill="#f3f0fd"/>
+  <line x1="872" y1="222" x2="872" y2="378" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="816" y="300" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700" writing-mode="vertical-rl">시작 줄</text>
+  <text x="904" y="285" fill="#1c1f26" font-family="SF Mono, Menlo, monospace" font-size="21" font-weight="600">HTTP/1.1 201 Created</text>
+  <text x="904" y="326" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">버전 · 상태 코드 · 문구</text>
+
+  <!-- 응답: 헤더 -->
+  <rect x="760" y="378" width="650" height="246" fill="#ffffff"/>
+  <line x1="872" y1="378" x2="872" y2="624" stroke="#d0d4dc" stroke-width="1.5"/>
+  <line x1="760" y1="378" x2="1410" y2="378" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="816" y="501" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700" writing-mode="vertical-rl">헤더</text>
+  <text x="904" y="447" fill="#1c1f26" font-family="SF Mono, Menlo, monospace" font-size="19">Content-Type: application/json</text>
+  <text x="904" y="500" fill="#1c1f26" font-family="SF Mono, Menlo, monospace" font-size="19">Location: /api/posts/43</text>
+  <text x="904" y="553" fill="#1c1f26" font-family="SF Mono, Menlo, monospace" font-size="19">Cache-Control: max-age=60</text>
+
+  <!-- 응답: 빈 줄 -->
+  <rect x="760" y="624" width="650" height="76" fill="#f4f5f7"/>
+  <line x1="760" y1="624" x2="1410" y2="624" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="1085" y="671" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">(빈 줄)</text>
+
+  <!-- 응답: 본문 -->
+  <path d="M760 700 H1410 V858 Q1410 870 1398 870 H772 Q760 870 760 858 Z" fill="#eaf7ef"/>
+  <line x1="760" y1="700" x2="1410" y2="700" stroke="#d0d4dc" stroke-width="1.5"/>
+  <line x1="872" y1="700" x2="872" y2="870" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="816" y="785" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700" writing-mode="vertical-rl">본문</text>
+  <text x="904" y="794" fill="#1c1f26" font-family="SF Mono, Menlo, monospace" font-size="20">{ "id": 43, "title": "새 글" }</text>
+
+  <!-- 하단 콜아웃 -->
+  <rect x="70" y="910" width="1340" height="84" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="70" y="910" width="4" height="84" rx="2" fill="#6c5ce7"/>
+  <text x="104" y="962" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="600">요청과 응답은 같은 뼈대를 공유한다 — 첫 줄만 의도와 결과로 다를 뿐이다</text>
+</svg>
