@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1100" viewBox="0 0 1480 1100" role="img" aria-labelledby="title desc">
+  <title id="title">같은 연결 하나, 다른 흐름</title>
+  <desc id="desc">HTTP/1.1의 순차 응답과 HTTP/2의 프레임 멀티플렉싱을 시간축으로 비교한 다이어그램</desc>
+
+  <rect x="0" y="0" width="1480" height="1100" fill="#f4f5f7"/>
+
+  <text x="70" y="78" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="700">같은 연결 하나, 다른 흐름</text>
+  <text x="70" y="111" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">하나의 연결을 쓰는 두 방식의 응답 타임라인</text>
+
+  <!-- HTTP/1.1 카드 -->
+  <rect x="70" y="140" width="1340" height="400" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="105" y="190" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">HTTP/1.1 — 응답은 요청 순서대로 (HOLB)</text>
+
+  <!-- 시간축 -->
+  <text x="105" y="237" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">시간</text>
+  <line x1="160" y1="231" x2="1322" y2="231" stroke="#d0d4dc" stroke-width="2"/>
+  <path d="M1322 231 L1310 224 L1310 238 Z" fill="#d0d4dc"/>
+
+  <!-- 순차 응답 트랙 -->
+  <rect x="160" y="261" width="620" height="82" rx="8" fill="#fdf6e3" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="470" y="310" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">응답 A — 무거운 API</text>
+
+  <rect x="800" y="261" width="210" height="82" rx="8" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="905" y="310" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">응답 B — CSS</text>
+
+  <rect x="1030" y="261" width="210" height="82" rx="8" fill="#eaf7ef" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="1135" y="310" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">응답 C — JS</text>
+
+  <!-- B, C의 대기 구간 -->
+  <circle cx="215" cy="397" r="15" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="215" y="404" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">B</text>
+  <rect x="244" y="376" width="536" height="42" rx="8" fill="#ffffff" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 6"/>
+  <text x="512" y="404" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">A가 끝날 때까지 대기</text>
+  <line x1="780" y1="397" x2="800" y2="343" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4 5"/>
+
+  <circle cx="215" cy="469" r="15" fill="#eaf7ef" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="215" y="476" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">C</text>
+  <rect x="244" y="448" width="766" height="42" rx="8" fill="#ffffff" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 6"/>
+  <text x="627" y="476" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">A가 끝날 때까지 대기</text>
+  <line x1="1010" y1="469" x2="1030" y2="343" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4 5"/>
+
+  <!-- HTTP/2 카드 -->
+  <rect x="70" y="570" width="1340" height="360" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="105" y="620" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">HTTP/2 — 프레임 단위로 뒤섞여 전송 (멀티플렉싱)</text>
+
+  <!-- 시간축 -->
+  <text x="105" y="667" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">시간</text>
+  <line x1="160" y1="661" x2="1322" y2="661" stroke="#d0d4dc" stroke-width="2"/>
+  <path d="M1322 661 L1310 654 L1310 668 Z" fill="#d0d4dc"/>
+
+  <!-- 멀티플렉싱 프레임 트랙 -->
+  <rect x="160" y="692" width="934" height="90" rx="10" fill="#f4f5f7" stroke="#d0d4dc" stroke-width="1.5"/>
+
+  <rect x="174" y="706" width="54" height="62" rx="6" fill="#fdf6e3" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="201" y="744" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">A</text>
+  <rect x="238" y="706" width="54" height="62" rx="6" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="265" y="744" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">B</text>
+  <rect x="302" y="706" width="54" height="62" rx="6" fill="#eaf7ef" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="329" y="744" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">C</text>
+  <rect x="366" y="706" width="54" height="62" rx="6" fill="#fdf6e3" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="393" y="744" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">A</text>
+  <rect x="430" y="706" width="54" height="62" rx="6" fill="#eaf7ef" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="457" y="744" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">C</text>
+  <rect x="494" y="706" width="54" height="62" rx="6" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="521" y="744" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">B</text>
+  <rect x="558" y="706" width="54" height="62" rx="6" fill="#fdf6e3" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="585" y="744" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">A</text>
+  <rect x="622" y="706" width="54" height="62" rx="6" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="649" y="744" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">B</text>
+  <rect x="686" y="706" width="54" height="62" rx="6" fill="#eaf7ef" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="713" y="744" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">C</text>
+  <rect x="750" y="706" width="54" height="62" rx="6" fill="#fdf6e3" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="777" y="744" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">A</text>
+  <rect x="814" y="706" width="54" height="62" rx="6" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="841" y="744" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">B</text>
+  <rect x="878" y="706" width="54" height="62" rx="6" fill="#fdf6e3" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="905" y="744" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">A</text>
+  <rect x="942" y="706" width="54" height="62" rx="6" fill="#eaf7ef" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="969" y="744" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">C</text>
+  <rect x="1006" y="706" width="74" height="62" rx="6" fill="#fdf6e3" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="1043" y="744" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">A</text>
+
+  <line x1="1094" y1="737" x2="1123" y2="737" stroke="#27ae60" stroke-width="2"/>
+  <path d="M1123 737 L1113 731 L1113 743 Z" fill="#27ae60"/>
+  <text x="1142" y="729" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">B·C는 A를</text>
+  <text x="1142" y="757" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">기다리지 않는다</text>
+
+  <!-- 스트림 범례 -->
+  <rect x="160" y="827" width="250" height="50" rx="10" fill="#fdf6e3" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="185" y="859" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">A</text>
+  <text x="217" y="859" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">무거운 API</text>
+
+  <rect x="430" y="827" width="190" height="50" rx="10" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="455" y="859" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">B</text>
+  <text x="487" y="859" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">CSS</text>
+
+  <rect x="640" y="827" width="190" height="50" rx="10" fill="#eaf7ef" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="665" y="859" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">C</text>
+  <text x="697" y="859" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">JS</text>
+
+  <!-- 하단 콜아웃 -->
+  <rect x="70" y="970" width="1340" height="86" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="70" y="970" width="4" height="86" rx="2" fill="#6c5ce7"/>
+  <text x="104" y="1023" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="600">1.1은 대화가 한 번에 하나씩, 2는 프레임에 스트림 ID를 붙여 한 연결에 여러 대화를 섞는다</text>
+</svg>
