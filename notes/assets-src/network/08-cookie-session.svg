@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1120" viewBox="0 0 1480 1120" role="img" aria-labelledby="title desc">
+  <title id="title">무상태 위에 상태를 얹는 법</title>
+  <desc id="desc">브라우저, 서버, 세션 저장소 사이에서 쿠키와 세션으로 로그인을 유지하는 과정을 시간 순서대로 보여 주는 시퀀스 다이어그램</desc>
+
+  <rect x="0" y="0" width="1480" height="1120" fill="#f4f5f7"/>
+
+  <text x="70" y="78" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="700">무상태 위에 상태를 얹는 법</text>
+  <text x="70" y="111" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">쿠키가 세션 식별자를 전달해 로그인 상태를 이어 가는 흐름</text>
+
+  <rect x="70" y="140" width="1340" height="820" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+
+  <!-- 참여자 라벨 -->
+  <rect x="225" y="170" width="210" height="58" rx="12" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="330" y="207" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">브라우저</text>
+
+  <rect x="655" y="170" width="210" height="58" rx="12" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="1.5"/>
+  <text x="760" y="207" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">서버</text>
+
+  <rect x="1080" y="170" width="220" height="58" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="1190" y="207" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">세션 저장소</text>
+
+  <!-- 세로 라이프라인 -->
+  <line x1="330" y1="228" x2="330" y2="925" stroke="#d0d4dc" stroke-width="2" stroke-dasharray="7 7"/>
+  <line x1="760" y1="228" x2="760" y2="925" stroke="#d0d4dc" stroke-width="2" stroke-dasharray="7 7"/>
+  <line x1="1190" y1="228" x2="1190" y2="925" stroke="#d0d4dc" stroke-width="2" stroke-dasharray="7 7"/>
+
+  <!-- 1. 로그인 요청 -->
+  <text x="545" y="281" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">POST /login (아이디·비밀번호)</text>
+  <line x1="330" y1="304" x2="746" y2="304" stroke="#6c5ce7" stroke-width="3" stroke-linecap="round"/>
+  <path d="M746 296 L760 304 L746 312 Z" fill="#6c5ce7"/>
+
+  <!-- 2. 세션 생성 -->
+  <text x="975" y="381" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">세션 생성: abc123 = 사용자 42</text>
+  <line x1="760" y1="404" x2="1176" y2="404" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+  <path d="M1176 396 L1190 404 L1176 412 Z" fill="#6b7280"/>
+
+  <!-- 3. 쿠키 설정 -->
+  <text x="545" y="481" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">Set-Cookie: sessionId=abc123</text>
+  <line x1="760" y1="504" x2="344" y2="504" stroke="#6c5ce7" stroke-width="3" stroke-linecap="round"/>
+  <path d="M344 496 L330 504 L344 512 Z" fill="#6c5ce7"/>
+  <text x="545" y="536" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">HttpOnly · Secure · SameSite</text>
+
+  <!-- 브라우저 저장 메모와 단계 구분 -->
+  <rect x="96" y="569" width="200" height="50" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="196" y="601" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">브라우저가 쿠키 저장</text>
+  <line x1="296" y1="594" x2="330" y2="594" stroke="#6c5ce7" stroke-width="2"/>
+  <circle cx="330" cy="594" r="5" fill="#6c5ce7"/>
+  <line x1="370" y1="594" x2="1325" y2="594" stroke="#d0d4dc" stroke-width="1.5" stroke-dasharray="5 7"/>
+
+  <!-- 4. 쿠키가 포함된 요청 -->
+  <text x="545" y="668" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">GET /mypage + Cookie: sessionId=abc123</text>
+  <line x1="330" y1="691" x2="746" y2="691" stroke="#6c5ce7" stroke-width="3" stroke-linecap="round"/>
+  <path d="M746 683 L760 691 L746 699 Z" fill="#6c5ce7"/>
+  <text x="545" y="723" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">브라우저가 자동으로 첨부</text>
+
+  <!-- 5. 세션 조회 -->
+  <text x="975" y="791" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">abc123 조회 → 사용자 42</text>
+  <line x1="760" y1="814" x2="1176" y2="814" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+  <path d="M1176 806 L1190 814 L1176 822 Z" fill="#6b7280"/>
+
+  <!-- 6. 인증된 페이지 응답 -->
+  <text x="545" y="891" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">200 OK (사용자 42의 페이지)</text>
+  <line x1="760" y1="914" x2="344" y2="914" stroke="#27ae60" stroke-width="3" stroke-linecap="round"/>
+  <path d="M344 906 L330 914 L344 922 Z" fill="#27ae60"/>
+
+  <!-- 하단 콜아웃 -->
+  <rect x="70" y="990" width="1340" height="86" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="70" y="990" width="4" height="86" rx="2" fill="#6c5ce7"/>
+  <text x="104" y="1043" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">서버가 나를 기억하는 게 아니라, 브라우저가 증명서를 매번 들고 다닌다</text>
+</svg>
