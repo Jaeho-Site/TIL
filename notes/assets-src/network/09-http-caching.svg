@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1180" viewBox="0 0 1480 1180" role="img" aria-labelledby="title desc">
+  <title id="title">캐시의 두 단계 방어</title>
+  <desc id="desc">브라우저가 신선도와 ETag를 차례로 확인해 캐시된 리소스를 재사용하는 HTTP 캐시 판정 플로우차트</desc>
+
+  <rect x="0" y="0" width="1480" height="1180" fill="#f4f5f7"/>
+
+  <text x="70" y="76" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="700">캐시의 두 단계 방어</text>
+
+  <rect x="70" y="110" width="1340" height="900" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+
+  <!-- 시작 노드 -->
+  <rect x="470" y="145" width="540" height="72" rx="12" fill="#ffffff" stroke="#6c5ce7" stroke-width="2.5"/>
+  <text x="740" y="190" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">리소스가 필요하다</text>
+
+  <!-- 시작에서 첫 번째 판단으로 -->
+  <line x1="740" y1="217" x2="740" y2="246" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+  <path d="M732 246 L740 258 L748 246 Z" fill="#6b7280"/>
+
+  <!-- 첫 번째 판단 -->
+  <rect x="360" y="258" width="760" height="112" rx="12" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <circle cx="414" cy="314" r="25" fill="#ffffff" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="414" y="322" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="25" font-weight="700">?</text>
+  <text x="755" y="321" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">캐시에 사본이 있고, 아직 신선한가? (max-age 이내)</text>
+
+  <!-- 첫 번째 판단의 분기 -->
+  <path d="M740 370 V407 H370 V443" fill="none" stroke="#27ae60" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M362 443 L370 455 L378 443 Z" fill="#27ae60"/>
+  <text x="390" y="399" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">예</text>
+
+  <path d="M740 370 V407 H1110 V443" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1102 443 L1110 455 L1118 443 Z" fill="#6b7280"/>
+  <text x="1128" y="399" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">아니오</text>
+
+  <!-- 결과 A -->
+  <rect x="90" y="455" width="560" height="118" rx="12" fill="#eef9f2" stroke="#27ae60" stroke-width="2"/>
+  <text x="370" y="505" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">
+    <tspan x="370" dy="0">네트워크 요청 없음 —</tspan>
+    <tspan x="370" dy="32">200 (from cache), 0ms</tspan>
+  </text>
+  <text x="370" y="615" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">1단계: 요청 자체를 없앤다</text>
+
+  <!-- 조건부 요청 -->
+  <rect x="830" y="455" width="560" height="100" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="2"/>
+  <text x="1110" y="497" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">
+    <tspan x="1110" dy="0">조건부 요청 전송 —</tspan>
+    <tspan x="1110" dy="30">If-None-Match: ETag</tspan>
+  </text>
+
+  <!-- 조건부 요청에서 서버 판단으로 -->
+  <line x1="1110" y1="555" x2="1110" y2="613" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+  <path d="M1102 613 L1110 625 L1118 613 Z" fill="#6b7280"/>
+
+  <!-- 두 번째 판단 -->
+  <rect x="790" y="625" width="640" height="112" rx="12" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <circle cx="844" cy="681" r="25" fill="#ffffff" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="844" y="689" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="25" font-weight="700">?</text>
+  <text x="1130" y="688" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">서버: 내용이 그대로인가?</text>
+
+  <!-- 두 번째 판단의 분기 -->
+  <path d="M1110 737 V775 H440 V813" fill="none" stroke="#27ae60" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M432 813 L440 825 L448 813 Z" fill="#27ae60"/>
+  <text x="780" y="766" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">예</text>
+
+  <path d="M1110 737 V813" fill="none" stroke="#e74c3c" stroke-width="3" stroke-linecap="round"/>
+  <path d="M1102 813 L1110 825 L1118 813 Z" fill="#e74c3c"/>
+  <text x="1128" y="786" fill="#e74c3c" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">아니오</text>
+
+  <!-- 결과 B -->
+  <rect x="90" y="825" width="700" height="115" rx="12" fill="#eef9f2" stroke="#27ae60" stroke-width="2"/>
+  <text x="440" y="876" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">
+    <tspan x="440" dy="0">304 Not Modified —</tspan>
+    <tspan x="440" dy="32">본문 없이 사본 재사용</tspan>
+  </text>
+  <text x="440" y="979" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">2단계: 본문 전송을 없앤다</text>
+
+  <!-- 결과 C -->
+  <rect x="850" y="825" width="530" height="115" rx="12" fill="#fff8e1" stroke="#e74c3c" stroke-width="2"/>
+  <text x="1115" y="876" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">
+    <tspan x="1115" dy="0">200 OK —</tspan>
+    <tspan x="1115" dy="32">새 본문 + 새 ETag 수신</tspan>
+  </text>
+
+  <!-- 하단 콜아웃 -->
+  <rect x="70" y="1040" width="1340" height="96" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="70" y="1040" width="4" height="96" rx="2" fill="#6c5ce7"/>
+  <text x="104" y="1099" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">가장 빠른 요청은 보내지 않는 요청이다 — 신선하면 안 묻고, 상했으면 본문 대신 지문만 비교한다</text>
+</svg>
