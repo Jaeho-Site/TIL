@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1180" viewBox="0 0 1480 1180" role="img" aria-labelledby="title desc">
+  <title id="title">preflight — 위험한 요청은 보내기 전에 물어본다</title>
+  <desc id="desc">브라우저가 DELETE 본 요청 전에 OPTIONS preflight로 API 서버의 허가를 확인하는 CORS 시퀀스 다이어그램</desc>
+
+  <rect x="0" y="0" width="1480" height="1180" fill="#f4f5f7"/>
+
+  <text x="70" y="76" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="700">preflight — 위험한 요청은 보내기 전에 물어본다</text>
+
+  <rect x="70" y="110" width="1340" height="894" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+
+  <!-- Participants -->
+  <rect x="325" y="144" width="320" height="60" rx="12" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="485" y="181" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">브라우저 (localhost:3000)</text>
+
+  <rect x="965" y="144" width="370" height="60" rx="12" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="1150" y="181" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">API 서버 (api.example.com)</text>
+
+  <line x1="485" y1="204" x2="485" y2="966" stroke="#d0d4dc" stroke-width="2" stroke-dasharray="7 7"/>
+  <line x1="1150" y1="204" x2="1150" y2="966" stroke="#d0d4dc" stroke-width="2" stroke-dasharray="7 7"/>
+
+  <!-- Browser-side source note -->
+  <rect x="100" y="238" width="350" height="68" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="100" y="238" width="4" height="68" rx="2" fill="#6c5ce7"/>
+  <text x="126" y="280" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">코드: fetch로 DELETE 요청</text>
+  <line x1="450" y1="272" x2="485" y2="272" stroke="#d0d4dc" stroke-width="1.5"/>
+
+  <!-- 1. Preflight request -->
+  <circle cx="485" cy="360" r="15" fill="#ffffff" stroke="#6b7280" stroke-width="2"/>
+  <text x="485" y="366" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">1</text>
+  <text x="817.5" y="342" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">OPTIONS /posts (preflight)</text>
+  <line x1="500" y1="360" x2="1132" y2="360" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+  <path d="M1132 351 L1150 360 L1132 369 Z" fill="#6b7280"/>
+  <text x="817.5" y="397" text-anchor="middle" fill="#6b7280" font-family="SFMono-Regular, Consolas, 'Liberation Mono', monospace" font-size="17">Origin: http://localhost:3000</text>
+  <text x="817.5" y="424" text-anchor="middle" fill="#6b7280" font-family="SFMono-Regular, Consolas, 'Liberation Mono', monospace" font-size="17">Access-Control-Request-Method: DELETE</text>
+
+  <!-- 2. Preflight response -->
+  <circle cx="1150" cy="510" r="15" fill="#ffffff" stroke="#6b7280" stroke-width="2"/>
+  <text x="1150" y="516" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">2</text>
+  <text x="817.5" y="492" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">204 No Content</text>
+  <line x1="1135" y1="510" x2="503" y2="510" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+  <path d="M503 501 L485 510 L503 519 Z" fill="#6b7280"/>
+  <text x="817.5" y="547" text-anchor="middle" fill="#6b7280" font-family="SFMono-Regular, Consolas, 'Liberation Mono', monospace" font-size="17">Access-Control-Allow-Origin: http://localhost:3000</text>
+  <text x="817.5" y="574" text-anchor="middle" fill="#6b7280" font-family="SFMono-Regular, Consolas, 'Liberation Mono', monospace" font-size="17">Access-Control-Allow-Methods: GET, POST, DELETE</text>
+
+  <!-- Browser permission check note -->
+  <rect x="100" y="625" width="385" height="72" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="100" y="625" width="4" height="72" rx="2" fill="#6c5ce7"/>
+  <text x="126" y="669" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">허가 확인 — Max-Age 동안 캐시</text>
+
+  <!-- 3. Actual request -->
+  <circle cx="485" cy="785" r="15" fill="#6c5ce7"/>
+  <text x="485" y="791" text-anchor="middle" fill="#ffffff" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">3</text>
+  <text x="817.5" y="767" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">DELETE /posts/42 (본 요청)</text>
+  <line x1="500" y1="785" x2="1132" y2="785" stroke="#6c5ce7" stroke-width="4" stroke-linecap="round"/>
+  <path d="M1132 775 L1150 785 L1132 795 Z" fill="#6c5ce7"/>
+
+  <!-- 4. Readable response -->
+  <circle cx="1150" cy="905" r="15" fill="#27ae60"/>
+  <text x="1150" y="911" text-anchor="middle" fill="#ffffff" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">4</text>
+  <text x="817.5" y="887" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">200 OK — 스크립트가 응답을 읽을 수 있다</text>
+  <line x1="1135" y1="905" x2="503" y2="905" stroke="#27ae60" stroke-width="4" stroke-linecap="round"/>
+  <path d="M503 895 L485 905 L503 915 Z" fill="#27ae60"/>
+
+  <!-- Summary callout -->
+  <rect x="70" y="1032" width="1340" height="98" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="70" y="1032" width="4" height="98" rx="2" fill="#6c5ce7"/>
+  <text x="104" y="1090" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">허가 헤더는 서버만 보낼 수 있다 — CORS 에러는 프론트엔드 코드가 아니라 서버 설정에서 풀린다</text>
+</svg>
