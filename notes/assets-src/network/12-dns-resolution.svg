@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="980" viewBox="0 0 1480 980" role="img" aria-labelledby="title desc">
+  <title id="title">도메인이 IP가 되는 여정</title>
+  <desc id="desc">브라우저, 운영체제, 리졸버 캐시를 먼저 확인하고, 캐시에 답이 없으면 리졸버가 루트 서버, TLD 서버, 권한 네임서버에 순서대로 질의하는 DNS 조회 과정</desc>
+
+  <defs>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#6c5ce7"/>
+    </marker>
+    <marker id="arrow-purple-start" markerWidth="10" markerHeight="10" refX="1" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 10 0 L 0 5 L 10 10 Z" fill="#6c5ce7"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-green-start" markerWidth="10" markerHeight="10" refX="1" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 10 0 L 0 5 L 10 10 Z" fill="#27ae60"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1480" height="980" fill="#f4f5f7"/>
+
+  <text x="48" y="60" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="700">도메인이 IP가 되는 여정</text>
+  <text x="48" y="90" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">가까운 캐시부터 확인하고, 답이 없을 때만 전 세계의 DNS 계층을 따라간다</text>
+
+  <!-- 캐시 그룹 -->
+  <rect x="40" y="125" width="490" height="565" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="70" y="172" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">가까운 기억부터 — 캐시</text>
+  <text x="70" y="202" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">위에서부터 순서대로 확인</text>
+
+  <rect x="70" y="235" width="245" height="100" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <circle cx="100" cy="285" r="13" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="100" y="291" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">1</text>
+  <text x="128" y="292" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">브라우저 캐시</text>
+  <line x1="330" y1="285" x2="366" y2="285" stroke="#27ae60" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+  <text x="380" y="292" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">있으면 즉시 종료</text>
+
+  <line x1="192" y1="345" x2="192" y2="375" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <text x="207" y="365" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">없으면 다음</text>
+
+  <rect x="70" y="385" width="245" height="100" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <circle cx="100" cy="435" r="13" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="100" y="441" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">2</text>
+  <text x="128" y="442" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">운영체제 캐시</text>
+  <line x1="330" y1="435" x2="366" y2="435" stroke="#27ae60" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+  <text x="380" y="442" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">있으면 즉시 종료</text>
+
+  <line x1="192" y1="495" x2="192" y2="525" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <text x="207" y="515" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">없으면 다음</text>
+
+  <rect x="70" y="535" width="245" height="100" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <circle cx="100" cy="585" r="13" fill="#f3f0fd" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="100" y="591" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">3</text>
+  <text x="128" y="592" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">리졸버 캐시</text>
+  <line x1="330" y1="585" x2="366" y2="585" stroke="#27ae60" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+  <text x="380" y="592" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">있으면 즉시 종료</text>
+
+  <!-- 리졸버 -->
+  <path d="M 530 410 L 572 410" fill="none" stroke="#6c5ce7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <rect x="585" y="350" width="225" height="120" rx="12" fill="#ffffff" stroke="#6c5ce7" stroke-width="3"/>
+  <text x="697.5" y="398" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700">재귀 질의 담당</text>
+  <text x="697.5" y="432" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">리졸버 (8.8.8.8 등)</text>
+
+  <!-- 분산 탐색 그룹 -->
+  <rect x="850" y="125" width="590" height="565" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="880" y="172" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">아무도 모르면 — 분산 탐색</text>
+  <text x="880" y="202" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">리졸버가 위임 경로를 따라 직접 확인</text>
+
+  <rect x="1010" y="235" width="230" height="96" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="1125" y="291" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">루트 서버</text>
+  <text x="1264" y="278" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">&quot;.dev는 저쪽에</text>
+  <text x="1264" y="303" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">물어봐&quot;</text>
+
+  <rect x="1010" y="385" width="230" height="96" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="1125" y="441" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">TLD 서버 (.dev)</text>
+  <text x="1264" y="421" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">&quot;ezilog.dev는 이</text>
+  <text x="1264" y="446" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">네임서버가 관리해&quot;</text>
+
+  <rect x="1010" y="535" width="230" height="96" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="1125" y="591" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="700">권한 네임서버</text>
+  <text x="1264" y="590" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">&quot;IP는 76.76.21.21&quot;</text>
+
+  <!-- 리졸버와 각 DNS 계층의 왕복 질의 -->
+  <path d="M 810 375 C 865 320, 920 285, 992 283" fill="none" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round" marker-start="url(#arrow-purple-start)" marker-end="url(#arrow-purple)"/>
+  <circle cx="888" cy="317" r="17" fill="#ffffff" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="888" y="324" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">①</text>
+
+  <path d="M 810 410 C 875 410, 930 433, 992 433" fill="none" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round" marker-start="url(#arrow-purple-start)" marker-end="url(#arrow-purple)"/>
+  <circle cx="898" cy="421" r="17" fill="#ffffff" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="898" y="428" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">②</text>
+
+  <path d="M 810 445 C 865 510, 920 580, 992 583" fill="none" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round" marker-start="url(#arrow-purple-start)" marker-end="url(#arrow-purple)"/>
+  <circle cx="888" cy="535" r="17" fill="#ffffff" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="888" y="542" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">③</text>
+
+  <!-- 응답 및 캐시 -->
+  <path d="M 1300 745 L 175 745" fill="none" stroke="#27ae60" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-green-start)"/>
+  <circle cx="1320" cy="745" r="7" fill="#27ae60"/>
+  <text x="740" y="725" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="700">답을 들고 돌아오며 모든 계층에 TTL만큼 캐시</text>
+
+  <!-- 요약 콜아웃 -->
+  <rect x="40" y="825" width="1400" height="105" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="40" y="825" width="4" height="105" rx="2" fill="#6c5ce7"/>
+  <text x="76" y="888" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700">루트는 방향만, TLD는 담당자만, 답은 권한 네임서버만 — 책임을 아래로 위임한 구조다</text>
+</svg>
