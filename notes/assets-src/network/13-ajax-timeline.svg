@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="950" viewBox="0 0 1480 950" role="img" aria-labelledby="title desc">
+  <title id="title">클릭 한 번의 비용</title>
+  <desc id="desc">전통 페이지 내비게이션과 Ajax 방식의 서버 통신 및 화면 갱신 과정을 비교한 타임라인</desc>
+
+  <rect x="0" y="0" width="1480" height="950" fill="#f4f5f7"/>
+
+  <text x="60" y="64" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="700">클릭 한 번의 비용</text>
+
+  <!-- 전통 방식 -->
+  <rect x="60" y="100" width="1360" height="325" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="84" y="126" width="4" height="28" rx="2" fill="#e74c3c"/>
+  <text x="104" y="150" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24" font-weight="700">전통 방식 — 모든 상호작용이 페이지 전체 재수신</text>
+
+  <rect x="110" y="190" width="160" height="110" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="190" y="253" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="600">클릭</text>
+
+  <text x="330" y="212" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">요청</text>
+  <line x1="290" y1="245" x2="370" y2="245" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 370 245 L 358 238 L 358 252 Z" fill="#6c5ce7"/>
+
+  <rect x="390" y="190" width="270" height="110" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="525" y="253" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="600">서버: HTML 전체 생성</text>
+
+  <text x="735" y="212" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">HTML 전체 응답</text>
+  <line x1="680" y1="245" x2="790" y2="245" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 790 245 L 778 238 L 778 252 Z" fill="#6c5ce7"/>
+
+  <rect x="810" y="190" width="500" height="110" rx="12" fill="#fdf6e3" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="1060" y="239" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="600">
+    <tspan x="1060" dy="0">화면 전체를 처음부터</tspan>
+    <tspan x="1060" dy="29">다시 렌더링</tspan>
+  </text>
+  <text x="1060" y="360" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">바뀐 건 숫자 하나인데, 전부 다시 받는다 · 화면 깜빡임</text>
+
+  <!-- Ajax 방식 -->
+  <rect x="60" y="455" width="1360" height="325" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="84" y="481" width="4" height="28" rx="2" fill="#27ae60"/>
+  <text x="104" y="505" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24" font-weight="700">Ajax — 필요한 데이터만, 페이지는 그대로</text>
+
+  <rect x="110" y="545" width="160" height="110" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="190" y="608" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="600">클릭</text>
+
+  <text x="330" y="567" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">fetch</text>
+  <line x1="290" y1="600" x2="370" y2="600" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 370 600 L 358 593 L 358 607 Z" fill="#6c5ce7"/>
+
+  <rect x="390" y="545" width="270" height="110" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="525" y="608" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="600">서버: JSON만 응답</text>
+
+  <text x="735" y="567" text-anchor="middle" fill="#6b7280" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="17">{ "count": 3 }</text>
+  <line x1="680" y1="600" x2="790" y2="600" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 790 600 L 778 593 L 778 607 Z" fill="#6c5ce7"/>
+
+  <rect x="810" y="545" width="500" height="110" rx="12" fill="#eaf7ef" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="1060" y="608" text-anchor="middle" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="600">바뀐 부분의 DOM만 갱신</text>
+  <text x="1060" y="715" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">페이지 전환 없음 · 전송량 최소</text>
+
+  <!-- 요약 콜아웃 -->
+  <rect x="60" y="820" width="1360" height="90" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="84" y="843" width="4" height="44" rx="2" fill="#6c5ce7"/>
+  <text x="112" y="874" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="600">서버 통신과 페이지 전환을 분리한 것 — 이 발상 위에 SPA가 서 있다</text>
+</svg>
