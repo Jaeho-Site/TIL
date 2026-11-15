@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1160" viewBox="0 0 1480 1160" role="img" aria-labelledby="title desc">
+  <title id="title">서버의 소식이 브라우저에 닿는 세 가지 방법</title>
+  <desc id="desc">폴링, SSE, 웹소켓의 브라우저와 서버 간 통신 방식을 시간축으로 비교한 다이어그램</desc>
+
+  <defs>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#6c5ce7"/>
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#6b7280"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#27ae60"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1480" height="1160" fill="#f4f5f7"/>
+  <text id="diagram-title" x="60" y="64" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="700">서버의 소식이 브라우저에 닿는 세 가지 방법</text>
+
+  <!-- 폴링 -->
+  <rect x="60" y="100" width="1360" height="280" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="88" y="151" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="28" font-weight="700">폴링</text>
+  <text x="88" y="181" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">일정한 주기로 확인</text>
+  <line x1="285" y1="126" x2="285" y2="354" stroke="#d0d4dc" stroke-width="1.5"/>
+
+  <text x="318" y="169" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="600">브라우저</text>
+  <text x="336" y="282" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="600">서버</text>
+  <line x1="415" y1="164" x2="1365" y2="164" stroke="#d0d4dc" stroke-width="2" stroke-linecap="round"/>
+  <line x1="415" y1="276" x2="1365" y2="276" stroke="#d0d4dc" stroke-width="2" stroke-linecap="round"/>
+  <text x="425" y="198" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="600">요청</text>
+
+  <line x1="520" y1="174" x2="520" y2="264" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <line x1="568" y1="266" x2="568" y2="176" stroke="#6b7280" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-gray)"/>
+  <text x="568" y="226" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">없음</text>
+
+  <line x1="740" y1="174" x2="740" y2="264" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <line x1="788" y1="266" x2="788" y2="176" stroke="#6b7280" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-gray)"/>
+  <text x="788" y="226" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">없음</text>
+
+  <line x1="960" y1="174" x2="960" y2="264" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <line x1="1008" y1="266" x2="1008" y2="176" stroke="#27ae60" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+  <rect x="1028" y="202" width="112" height="34" rx="12" fill="#ffffff" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="1084" y="225" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="700">새 메시지!</text>
+
+  <line x1="1180" y1="174" x2="1180" y2="264" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <line x1="1228" y1="266" x2="1228" y2="176" stroke="#6b7280" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-gray)"/>
+  <text x="1228" y="226" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">없음</text>
+
+  <text x="415" y="338" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18">대부분의 왕복이 헛걸음 · 주기만큼 지연</text>
+
+  <!-- SSE -->
+  <rect x="60" y="405" width="1360" height="280" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="88" y="456" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="28" font-weight="700">SSE</text>
+  <text x="88" y="486" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">서버에서 단방향 전송</text>
+  <line x1="285" y1="431" x2="285" y2="659" stroke="#d0d4dc" stroke-width="1.5"/>
+
+  <text x="318" y="474" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="600">브라우저</text>
+  <text x="336" y="587" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="600">서버</text>
+  <line x1="415" y1="469" x2="1365" y2="469" stroke="#d0d4dc" stroke-width="2" stroke-linecap="round"/>
+  <line x1="415" y1="581" x2="1365" y2="581" stroke="#d0d4dc" stroke-width="2" stroke-linecap="round"/>
+
+  <line x1="430" y1="525" x2="1365" y2="525" stroke="#6c5ce7" stroke-opacity="0.35" stroke-width="2.5" stroke-dasharray="9 9" stroke-linecap="round"/>
+  <rect x="1080" y="503" width="264" height="34" rx="12" fill="#f3f0fd"/>
+  <text x="1212" y="526" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="600">끝나지 않는 응답 스트림</text>
+
+  <line x1="510" y1="479" x2="510" y2="569" stroke="#6c5ce7" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <text x="530" y="500" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="600">한 번의 요청</text>
+
+  <line x1="735" y1="571" x2="735" y2="481" stroke="#27ae60" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+  <line x1="925" y1="571" x2="925" y2="481" stroke="#27ae60" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+  <line x1="1260" y1="571" x2="1260" y2="481" stroke="#27ae60" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+  <circle cx="735" cy="581" r="5" fill="#27ae60"/>
+  <circle cx="925" cy="581" r="5" fill="#27ae60"/>
+  <circle cx="1260" cy="581" r="5" fill="#27ae60"/>
+
+  <text x="970" y="641" text-anchor="middle" fill="#27ae60" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="600">이벤트가 생길 때마다 흘려보냄</text>
+
+  <!-- 웹소켓 -->
+  <rect x="60" y="710" width="1360" height="280" rx="12" fill="#ffffff" stroke="#d0d4dc" stroke-width="1.5"/>
+  <text x="88" y="761" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="28" font-weight="700">웹소켓</text>
+  <text x="88" y="791" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17">연결 뒤 자유로운 양방향</text>
+  <line x1="285" y1="736" x2="285" y2="964" stroke="#d0d4dc" stroke-width="1.5"/>
+
+  <text x="318" y="779" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="600">브라우저</text>
+  <text x="336" y="892" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="600">서버</text>
+  <line x1="415" y1="774" x2="1365" y2="774" stroke="#d0d4dc" stroke-width="2" stroke-linecap="round"/>
+  <line x1="415" y1="886" x2="1365" y2="886" stroke="#d0d4dc" stroke-width="2" stroke-linecap="round"/>
+
+  <line x1="495" y1="784" x2="495" y2="874" stroke="#6b7280" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-gray)"/>
+  <line x1="555" y1="876" x2="555" y2="786" stroke="#6b7280" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow-gray)"/>
+  <text x="525" y="751" text-anchor="middle" fill="#6b7280" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="600">HTTP Upgrade → 101</text>
+
+  <line x1="700" y1="876" x2="785" y2="786" stroke="#6c5ce7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <line x1="760" y1="784" x2="865" y2="876" stroke="#6c5ce7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <line x1="910" y1="876" x2="1005" y2="786" stroke="#6c5ce7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <line x1="990" y1="784" x2="1100" y2="876" stroke="#6c5ce7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <line x1="1145" y1="876" x2="1240" y2="786" stroke="#6c5ce7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <line x1="1215" y1="784" x2="1325" y2="876" stroke="#6c5ce7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+
+  <rect x="938" y="918" width="270" height="34" rx="12" fill="#f3f0fd"/>
+  <text x="1073" y="941" text-anchor="middle" fill="#6c5ce7" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="600">양쪽 모두 아무 때나</text>
+
+  <!-- 요약 콜아웃 -->
+  <rect x="60" y="1025" width="1360" height="95" rx="12" fill="#f3f0fd" stroke="#d0d4dc" stroke-width="1.5"/>
+  <rect x="84" y="1049" width="4" height="47" rx="2" fill="#6c5ce7"/>
+  <text x="112" y="1082" fill="#1c1f26" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="600">폴링은 자주 물어서, SSE는 응답을 끝내지 않아서, 웹소켓은 규칙을 바꿔서 — 같은 한계를 다르게 우회한다</text>
+</svg>
