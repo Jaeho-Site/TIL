@@ -209,6 +209,64 @@ export default defineConfig({
         {
           text: 'Network',
           items: [{ text: '소개', link: '/network/' }]
+        },
+        {
+          text: '통신의 토대',
+          collapsed: false,
+          items: [
+            { text: '네트워크는 왜 계층으로 나눴나', link: '/network/01-layered-model' },
+            { text: '연결은 왜 세 번 주고받으며 시작하나', link: '/network/02-tcp-handshake' },
+            { text: '빠르게 보내면 왜 안 되나', link: '/network/03-flow-congestion' },
+            { text: 'UDP는 결함이 아니라 선택이다', link: '/network/04-tcp-vs-udp' }
+          ]
+        },
+        {
+          text: 'HTTP',
+          collapsed: false,
+          items: [
+            { text: 'HTTP 메시지는 어떻게 생겼나', link: '/network/05-http-message' },
+            { text: 'GET으로 삭제하면 왜 안 되나', link: '/network/06-method-status' },
+            { text: 'HTTP는 왜 세 번 다시 태어났나', link: '/network/07-http-evolution' }
+          ]
+        },
+        {
+          text: '상태와 캐싱',
+          collapsed: false,
+          items: [
+            { text: '무상태인데 로그인은 어떻게 유지되나', link: '/network/08-cookie-session' },
+            { text: '같은 파일을 두 번 받지 않는 방법', link: '/network/09-http-caching' }
+          ]
+        },
+        {
+          text: '보안',
+          collapsed: false,
+          items: [
+            { text: 'HTTPS는 무엇을 어떻게 지키나', link: '/network/10-https-tls' },
+            { text: '브라우저는 왜 내 요청을 막나', link: '/network/11-sop-cors' }
+          ]
+        },
+        {
+          text: '이름과 성능',
+          collapsed: false,
+          items: [
+            { text: '도메인은 어떻게 IP가 되나', link: '/network/12-dns' }
+          ]
+        },
+        {
+          text: '브라우저와 API',
+          collapsed: false,
+          items: [
+            { text: '페이지를 안 바꾸고 데이터만 받으려면', link: '/network/13-ajax-fetch' },
+            { text: 'REST API는 무엇을 약속하나', link: '/network/14-rest-api' },
+            { text: '서버가 먼저 말을 걸 수 있나', link: '/network/15-realtime' }
+          ]
+        },
+        {
+          text: '종합',
+          collapsed: false,
+          items: [
+            { text: 'URL을 입력하면 무슨 일이 일어나나', link: '/network/16-url-to-screen' }
+          ]
         }
       ],
       '/operating-system/': [
